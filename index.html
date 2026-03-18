@@ -1251,17 +1251,17 @@
         });
     });
 
+    /* ═══ Init ═══ */
+    buildGallery();
+
     /* ═══ Admin — URL 파라미터 방식 (?admin) ═══ */
     const ADMIN_PASSWORD = 'prosper2025'; // ← 비밀번호 여기서 변경
 
-    // URL에 ?admin 있으면 자동으로 비밀번호 모달 표시
     if (new URLSearchParams(location.search).has('admin')) {
-        window.addEventListener('load', () => {
-            setTimeout(() => {
-                document.getElementById('pwModal').classList.add('open');
-                setTimeout(() => document.getElementById('pwInput').focus(), 150);
-            }, 500);
-        });
+        setTimeout(() => {
+            document.getElementById('pwModal').classList.add('open');
+            document.getElementById('pwInput').focus();
+        }, 300);
     }
 
     function toggleAdminMode() {
@@ -1399,8 +1399,6 @@
         return new Blob([arr], {type: mime});
     }
 
-    /* ═══ Init ═══ */
-    buildGallery();
     </script>
 </body>
 </html>
