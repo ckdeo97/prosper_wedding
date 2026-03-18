@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PROSPER SNAP | 웨딩 스냅 촬영</title>
     <meta name="description" content="프로스퍼 스냅 - 당신의 가장 빛나는 순간을 담는 프리미엄 웨딩 스냅 스튜디오">
+    <link rel="icon" type="image/x-icon" href="asset/favicon.ico">
+    <link rel="shortcut icon" href="asset/favicon.ico">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Noto+Sans+KR:wght@300;400;500;600&family=Noto+Serif+KR:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -82,8 +84,9 @@
         }
 
         /* ═══════════════════ HERO ═══════════════════ */
-        .hero {
-            min-height: 100vh;
+        section.hero, .hero {
+            min-height: 100vh; max-width: 100% !important; width: 100%;
+            margin-left: 0 !important; margin-right: 0 !important;
             display: flex; align-items: center; justify-content: center;
             text-align: center; padding: 8rem 2rem 6rem;
             position: relative; overflow: hidden;
@@ -561,7 +564,7 @@
 
     <!-- ───────── NAV ───────── -->
     <nav id="navbar">
-        <a href="#hero"><img src="asset/CI_snap.png" alt="Prosper Snap" class="nav-logo" onerror="this.style.display='none'; this.nextSibling.style.display='block'"><span style="display:none; font-family:'Cormorant Garamond',serif; font-size:1.1rem; letter-spacing:0.2em; color:var(--text-dark);">PROSPER SNAP</span></a>
+        <a href="#hero"><img src="asset/typologo_main.png" alt="Prosper Snap" class="nav-logo" style="height:36px; object-fit:contain;" onerror="this.style.display='none'; this.nextSibling.style.display='block'"><span style="display:none; font-family:'Cormorant Garamond',serif; font-size:1.1rem; letter-spacing:0.2em; color:var(--text-dark);">PROSPER SNAP</span></a>
         <ul class="nav-links" id="navLinks">
             <li><a href="#about" onclick="closeNav()">About</a></li>
             <li><a href="#gallery" onclick="closeNav()">Gallery</a></li>
@@ -579,13 +582,19 @@
     <section class="hero" id="hero">
         <div class="hero-deco-top"></div>
         <div class="hero-content">
-            <img src="asset/CI_snap.png" alt="Prosper Snap" class="hero-logo-mark" onerror="this.style.display='none'">
+            <img src="asset/typologo_main.png" alt="Prosper Snap" class="hero-logo-mark" style="height:60px; object-fit:contain;" onerror="this.style.display='none'">
             <div class="hero-ornament">
                 <div class="hero-ornament-line"></div>
                 <div class="hero-ornament-diamond"></div>
                 <div class="hero-ornament-line"></div>
             </div>
-            <h1 class="hero-title" style="font-family:'Cormorant Garamond',serif; font-style:italic; font-size:clamp(2rem,5vw,3.6rem); font-weight:400; letter-spacing:0.02em; line-height:1.4;">𝑨𝒍𝒍 𝒚𝒐𝒖𝒓 𝒑𝒆𝒓𝒇𝒆𝒄𝒕 𝒎𝒐𝒎𝒆𝒏𝒕𝒔</h1>
+            <h1 class="hero-title" style="
+                font-family:'Cormorant Garamond',serif;
+                font-style:italic; font-weight:400;
+                font-size: clamp(1.4rem, 4.5vw, 3.8rem);
+                letter-spacing:0.02em; line-height:1.2;
+                white-space: nowrap;
+            ">All your perfect moments</h1>
             <p class="hero-subtitle">Premium Wedding Snap Photography</p>
             <p class="hero-desc">두 분의 이야기를 자연스럽고 감성적인 시선으로 담아내는<br>프리미엄 웨딩 스냅 스튜디오입니다.</p>
             <div class="hero-cta-group">
@@ -794,7 +803,7 @@
                                 </div>
                                 <span class="addon-card-tag">Deluxe 이상</span>
                             </div>
-                            <p class="addon-card-desc">여러분의 결혼 소식을 인스타 스토리로 알려보세요. 세로 영상으로 제작하는 감성적인 결혼식 티저 영상으로 소중한 순간을 더 많은 사람과 나눌 수 있습니다.</p>
+                            <p class="addon-card-desc">결혼 소식을 인스타 스토리나 피드로 알려보세요. 감성적인 세로 영상으로 제작되는 결혼식 티저 필름으로, 소중한 순간을 더 많은 사람과 나눌 수 있습니다.</p>
                             <div class="addon-card-notice">
                                 <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
                                 Deluxe 이상 패키지에서 선택 가능합니다. Premium 패키지 포함 제공.
@@ -1044,7 +1053,7 @@
     <!-- ───────── ADMIN BAR ───────── -->
     <div class="admin-bar">
         <span class="admin-bar-label">⚙ Admin Mode</span>
-        <span class="admin-bar-note">각 사진 위에 마우스를 올려 경로와 레이아웃을 수정하세요.</span>
+        <span class="admin-bar-note">각 슬롯에 이미지를 <strong style="color:var(--gold-light);">드래그앤드롭</strong>하거나, 마우스 올려 경로·레이아웃 수정</span>
         <button class="admin-export-btn" onclick="exportConfig()">gallery-config.js 다운로드</button>
     </div>
 
@@ -1165,6 +1174,11 @@
             }
 
             grid.appendChild(item);
+
+            // 어드민 모드에서 드래그앤드롭 활성화
+            if (document.body.classList.contains('admin-mode')) {
+                setupDragDrop(item, i);
+            }
         });
     }
 
@@ -1241,23 +1255,17 @@
         });
     });
 
-    /* ═══ Secret Trigger — Shift + 로고 3번 클릭 ═══ */
+    /* ═══ Admin — URL 파라미터 방식 (?admin) ═══ */
     const ADMIN_PASSWORD = 'prosper2025'; // ← 비밀번호 여기서 변경
-    let logoClickCount = 0;
-    let logoClickTimer = null;
 
-    document.querySelector('nav a[href="#hero"]').addEventListener('click', function(e) {
-        if (!e.shiftKey) return;
-        e.preventDefault();
-        logoClickCount++;
-        clearTimeout(logoClickTimer);
-        logoClickTimer = setTimeout(() => { logoClickCount = 0; }, 1500);
-        if (logoClickCount >= 3) {
-            logoClickCount = 0;
-            clearTimeout(logoClickTimer);
-            toggleAdminMode();
-        }
-    });
+    // URL에 ?admin 있으면 자동으로 비밀번호 모달 표시
+    if (new URLSearchParams(location.search).has('admin')) {
+        window.addEventListener('DOMContentLoaded', () => {}, false);
+        setTimeout(() => {
+            document.getElementById('pwModal').classList.add('open');
+            setTimeout(() => document.getElementById('pwInput').focus(), 150);
+        }, 400);
+    }
 
     function toggleAdminMode() {
         if (document.body.classList.contains('admin-mode')) {
@@ -1295,6 +1303,104 @@
             if (e.key === 'Escape') closePwModal();
         }
     });
+
+    /* ═══ 이미지 리사이즈 (Canvas) ═══ */
+    function resizeImageFile(file, maxPx = 1920) {
+        return new Promise(resolve => {
+            const reader = new FileReader();
+            reader.onload = ev => {
+                const img = new Image();
+                img.onload = () => {
+                    let w = img.width, h = img.height;
+                    if (w <= maxPx && h <= maxPx) { resolve(ev.target.result); return; }
+                    const ratio = Math.min(maxPx / w, maxPx / h);
+                    w = Math.round(w * ratio); h = Math.round(h * ratio);
+                    const canvas = document.createElement('canvas');
+                    canvas.width = w; canvas.height = h;
+                    canvas.getContext('2d').drawImage(img, 0, 0, w, h);
+                    resolve(canvas.toDataURL('image/jpeg', 0.88));
+                };
+                img.src = ev.target.result;
+            };
+            reader.readAsDataURL(file);
+        });
+    }
+
+    /* ═══ 드래그앤드롭 — 갤러리 아이템 ═══ */
+    function setupDragDrop(item, idx) {
+        item.addEventListener('dragover', e => {
+            e.preventDefault();
+            item.style.outline = '2px solid var(--gold)';
+            item.style.background = 'rgba(176,141,87,0.08)';
+        });
+        item.addEventListener('dragleave', () => {
+            item.style.outline = '';
+            item.style.background = '';
+        });
+        item.addEventListener('drop', async e => {
+            e.preventDefault();
+            item.style.outline = '';
+            item.style.background = '';
+            const file = e.dataTransfer.files[0];
+            if (!file || !file.type.startsWith('image/')) return;
+
+            // 로딩 표시
+            const loadingDiv = document.createElement('div');
+            loadingDiv.style.cssText = 'position:absolute;inset:0;background:rgba(0,0,0,0.5);display:flex;align-items:center;justify-content:center;color:white;font-size:0.75rem;letter-spacing:0.1em;z-index:200;';
+            loadingDiv.textContent = '처리 중...';
+            item.appendChild(loadingDiv);
+
+            const dataUrl = await resizeImageFile(file, 1920);
+
+            // 갤러리 배열 업데이트
+            GALLERY_PHOTOS[idx].src = dataUrl;
+            GALLERY_PHOTOS[idx]._filename = file.name.replace(/\.[^.]+$/, '.jpg');
+            GALLERY_PHOTOS[idx]._isBlob = true;
+
+            item.removeChild(loadingDiv);
+            buildGallery();
+        });
+    }
+
+    /* ═══ export 수정 — blob 이미지 ZIP 다운로드 ═══ */
+    async function exportConfig() {
+        const blobItems = GALLERY_PHOTOS.filter(p => p._isBlob);
+
+        // 1) gallery-config.js 다운로드
+        const lines = GALLERY_PHOTOS.map((p, i) => {
+            const src = p._isBlob ? `asset/gallery/${p._filename || (String(i+1).padStart(2,'0')+'.jpg')}` : p.src;
+            return `    { src: "${src}", layout: "${p.layout}", alt: "${p.alt || ''}" }`;
+        }).join(',\n');
+        const configContent = `// gallery-config.js\n// layout: "square" | "tall" | "wide" | "feature"\n\nconst GALLERY_PHOTOS = [\n${lines}\n];\n`;
+        downloadBlob(new Blob([configContent], {type:'text/javascript'}), 'gallery-config.js');
+
+        // 2) 드롭된 이미지들 개별 다운로드
+        for (const p of blobItems) {
+            await new Promise(r => setTimeout(r, 200));
+            const fname = p._filename || 'image.jpg';
+            downloadBlob(dataURLtoBlob(p.src), fname);
+        }
+
+        if (blobItems.length > 0) {
+            setTimeout(() => alert(`✅ 이미지 ${blobItems.length}개가 다운로드됐어요.\nasset/gallery/ 폴더에 넣어주세요.`), 300);
+        }
+    }
+
+    function downloadBlob(blob, filename) {
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url; a.download = filename; a.click();
+        URL.revokeObjectURL(url);
+    }
+
+    function dataURLtoBlob(dataUrl) {
+        const [header, data] = dataUrl.split(',');
+        const mime = header.match(/:(.*?);/)[1];
+        const binary = atob(data);
+        const arr = new Uint8Array(binary.length);
+        for (let i = 0; i < binary.length; i++) arr[i] = binary.charCodeAt(i);
+        return new Blob([arr], {type: mime});
+    }
 
     /* ═══ Init ═══ */
     buildGallery();
