@@ -1260,11 +1260,12 @@
 
     // URL에 ?admin 있으면 자동으로 비밀번호 모달 표시
     if (new URLSearchParams(location.search).has('admin')) {
-        window.addEventListener('DOMContentLoaded', () => {}, false);
-        setTimeout(() => {
-            document.getElementById('pwModal').classList.add('open');
-            setTimeout(() => document.getElementById('pwInput').focus(), 150);
-        }, 400);
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                document.getElementById('pwModal').classList.add('open');
+                setTimeout(() => document.getElementById('pwInput').focus(), 150);
+            }, 500);
+        });
     }
 
     function toggleAdminMode() {
