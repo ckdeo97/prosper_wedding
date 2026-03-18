@@ -97,13 +97,9 @@
             background: linear-gradient(90deg, transparent 10%, var(--border) 50%, transparent 90%);
         }
         .hero-content { max-width: 720px; position: relative; z-index: 2; }
-        .hero-logo-mark {
-            height: 52px; margin: 0 auto 2.5rem;
-            opacity: 0; animation: fadeUp 1s 0.2s cubic-bezier(0.22,1,0.36,1) forwards;
-        }
         .hero-ornament {
             display: flex; align-items: center; justify-content: center; gap: 1rem;
-            margin-bottom: 2.5rem;
+            margin-bottom: 2rem;
             opacity: 0; animation: fadeUp 1s 0.4s cubic-bezier(0.22,1,0.36,1) forwards;
         }
         .hero-ornament-line { width: 50px; height: 1px; background: var(--gold); opacity: 0.4; }
@@ -182,9 +178,7 @@
             position: relative; aspect-ratio: 3/4; overflow: hidden;
             background: var(--cream-deep); box-shadow: var(--shadow-card);
         }
-        .about-photo-frame img {
-            width: 100%; height: 100%; object-fit: cover; display: block;
-        }
+        .about-photo-frame img { width: 100%; height: 100%; object-fit: cover; display: block; }
         .about-photo-frame::before {
             content: ''; position: absolute; inset: -1px;
             border: 1px solid var(--border); z-index: 1; pointer-events: none;
@@ -193,32 +187,19 @@
             position: absolute; top: -12px; right: -12px; width: 100%; height: 100%;
             border: 1px solid var(--border); pointer-events: none;
         }
-        /* placeholder when no image */
         .about-photo-frame.no-image {
             display: flex; align-items: center; justify-content: center;
             flex-direction: column; gap: 0.75rem;
         }
         .about-photo-frame.no-image::after {
             content: 'asset/about.jpg';
-            font-size: 0.75rem; color: var(--text-faint); letter-spacing: 0.05em;
-            font-family: monospace;
+            font-size: 0.75rem; color: var(--text-faint); letter-spacing: 0.05em; font-family: monospace;
         }
         .about-text h3 {
             font-family: 'Noto Serif KR', serif; font-size: 1.4rem; font-weight: 400;
             color: var(--text-dark); line-height: 1.8; margin-bottom: 1.25rem;
         }
         .about-text p { font-size: 0.9rem; line-height: 2; color: var(--text-body); font-weight: 300; margin-bottom: 1rem; }
-        .about-stats {
-            display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 2.5rem;
-            border-top: 1px solid var(--border-light); padding-top: 2rem;
-        }
-        .stat-item { text-align: center; }
-        .stat-number {
-            font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 300;
-            color: var(--text-dark); line-height: 1;
-        }
-        .stat-unit { font-size: 0.7rem; color: var(--gold); letter-spacing: 0.05em; }
-        .stat-label { font-size: 0.72rem; color: var(--text-light); margin-top: 0.3rem; letter-spacing: 0.05em; }
         @media (max-width: 768px) {
             .about-wrapper { grid-template-columns: 1fr; gap: 2.5rem; }
             .about-accent-frame { display: none; }
@@ -227,20 +208,13 @@
         /* ═══════════════════ GALLERY ═══════════════════ */
         #gallery { padding-top: 6rem; padding-bottom: 6rem; max-width: 1400px; }
         .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            grid-auto-rows: 300px;
-            gap: 6px;
+            display: grid; grid-template-columns: repeat(3, 1fr);
+            grid-auto-rows: 300px; gap: 6px;
         }
-        .gallery-item {
-            position: relative; overflow: hidden;
-            background: var(--cream-deep); cursor: pointer;
-        }
+        .gallery-item { position: relative; overflow: hidden; background: var(--cream-deep); cursor: pointer; }
         .gallery-item[data-layout="feature"]  { grid-column: span 2; grid-row: span 2; }
         .gallery-item[data-layout="tall"]     { grid-row: span 2; }
         .gallery-item[data-layout="wide"]     { grid-column: span 2; }
-        /* default square = 1x1 */
-
         .gallery-item img {
             width: 100%; height: 100%; object-fit: cover; display: block;
             transition: transform 0.7s cubic-bezier(0.22,1,0.36,1);
@@ -252,23 +226,14 @@
             opacity: 0; transition: opacity 0.4s;
         }
         .gallery-item:hover .gallery-overlay { opacity: 1; }
-
-        /* Placeholder when no image */
-        .gallery-item.no-image {
-            display: flex; align-items: center; justify-content: center;
-            flex-direction: column; gap: 0.5rem;
-        }
+        .gallery-item.no-image { display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 0.5rem; }
         .gallery-placeholder-icon { opacity: 0.2; }
         .gallery-placeholder-icon svg { width: 32px; height: 32px; stroke: var(--text-dark); }
-        .gallery-placeholder-path {
-            font-size: 0.65rem; color: var(--text-faint); font-family: monospace;
-            text-align: center; padding: 0 1rem;
-        }
+        .gallery-placeholder-path { font-size: 0.65rem; color: var(--text-faint); font-family: monospace; text-align: center; padding: 0 1rem; }
 
         /* ─── Admin Mode ─── */
         body.admin-mode .gallery-item { outline: 2px dashed rgba(176,141,87,0.4); }
         body.admin-mode .gallery-item:hover { outline-color: var(--gold); }
-
         .admin-bar {
             display: none; position: fixed; bottom: 0; left: 0; right: 0; z-index: 9000;
             background: #1a1a1a; color: #fff;
@@ -276,13 +241,8 @@
             border-top: 2px solid var(--gold);
         }
         body.admin-mode .admin-bar { display: flex; }
-        .admin-bar-label {
-            font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase;
-            color: var(--gold); font-weight: 600; white-space: nowrap;
-        }
-        .admin-bar-note {
-            font-size: 0.75rem; color: rgba(255,255,255,0.5); flex: 1;
-        }
+        .admin-bar-label { font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); font-weight: 600; white-space: nowrap; }
+        .admin-bar-note { font-size: 0.75rem; color: rgba(255,255,255,0.5); flex: 1; }
         .admin-export-btn {
             background: var(--gold); color: #fff; border: none; cursor: pointer;
             padding: 0.55rem 1.4rem; font-size: 0.72rem; letter-spacing: 0.1em;
@@ -290,8 +250,6 @@
             white-space: nowrap; transition: background 0.2s;
         }
         .admin-export-btn:hover { background: var(--gold-light); }
-
-        /* Edit overlay per item */
         .gallery-edit-overlay {
             display: none; position: absolute; inset: 0; z-index: 100;
             background: rgba(10,8,5,0.82); backdrop-filter: blur(2px);
@@ -299,34 +257,15 @@
             gap: 0.75rem; padding: 1.25rem;
         }
         body.admin-mode .gallery-item:hover .gallery-edit-overlay { display: flex; }
-        .edit-overlay-title {
-            font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase;
-            color: var(--gold); margin-bottom: 0.25rem;
-        }
+        .edit-overlay-title { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.25rem; }
         .edit-field-label { font-size: 0.65rem; color: rgba(255,255,255,0.5); align-self: flex-start; letter-spacing: 0.05em; }
-        .edit-path-input {
-            width: 100%; background: rgba(255,255,255,0.08); border: 1px solid rgba(176,141,87,0.4);
-            color: #fff; font-size: 0.72rem; padding: 0.4rem 0.6rem;
-            font-family: monospace; outline: none;
-        }
+        .edit-path-input { width: 100%; background: rgba(255,255,255,0.08); border: 1px solid rgba(176,141,87,0.4); color: #fff; font-size: 0.72rem; padding: 0.4rem 0.6rem; font-family: monospace; outline: none; }
         .edit-path-input:focus { border-color: var(--gold); }
-        .edit-layout-select {
-            width: 100%; background: rgba(255,255,255,0.08); border: 1px solid rgba(176,141,87,0.4);
-            color: #fff; font-size: 0.72rem; padding: 0.4rem 0.6rem; outline: none;
-            appearance: none; cursor: pointer;
-        }
+        .edit-layout-select { width: 100%; background: rgba(255,255,255,0.08); border: 1px solid rgba(176,141,87,0.4); color: #fff; font-size: 0.72rem; padding: 0.4rem 0.6rem; outline: none; appearance: none; cursor: pointer; }
         .edit-layout-select option { background: #1a1a1a; }
-        .edit-apply-btn {
-            background: var(--gold); color: #fff; border: none; cursor: pointer;
-            padding: 0.45rem 1.2rem; font-size: 0.7rem; letter-spacing: 0.1em;
-            text-transform: uppercase; width: 100%; font-family: 'Noto Sans KR', sans-serif;
-            transition: background 0.2s; margin-top: 0.25rem;
-        }
+        .edit-apply-btn { background: var(--gold); color: #fff; border: none; cursor: pointer; padding: 0.45rem 1.2rem; font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; width: 100%; font-family: 'Noto Sans KR', sans-serif; transition: background 0.2s; margin-top: 0.25rem; }
         .edit-apply-btn:hover { background: var(--gold-light); }
-        .edit-item-index {
-            position: absolute; top: 0.5rem; left: 0.6rem;
-            font-size: 0.6rem; color: var(--gold); font-family: monospace; letter-spacing: 0.05em;
-        }
+        .edit-item-index { position: absolute; top: 0.5rem; left: 0.6rem; font-size: 0.6rem; color: var(--gold); font-family: monospace; letter-spacing: 0.05em; }
 
         @media (max-width: 768px) {
             .gallery-grid { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 200px; }
@@ -350,16 +289,8 @@
             box-shadow: var(--shadow-soft);
         }
         .package-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-card); border-color: var(--border); }
-        .package-card.featured {
-            border-color: var(--border); box-shadow: var(--shadow-card);
-            background: linear-gradient(160deg, var(--ivory) 0%, rgba(176,141,87,0.03) 100%);
-        }
-        .package-badge {
-            position: absolute; top: -1px; right: 2rem;
-            background: var(--gold); color: var(--ivory);
-            font-size: 0.6rem; font-weight: 700; letter-spacing: 0.15em;
-            text-transform: uppercase; padding: 0.35rem 0.85rem 0.4rem;
-        }
+        .package-card.featured { border-color: var(--border); box-shadow: var(--shadow-card); background: linear-gradient(160deg, var(--ivory) 0%, rgba(176,141,87,0.03) 100%); }
+        .package-badge { position: absolute; top: -1px; right: 2rem; background: var(--gold); color: var(--ivory); font-size: 0.6rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; padding: 0.35rem 0.85rem 0.4rem; }
         .package-tier { font-family: 'Cormorant Garamond',serif; font-size: 0.7rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.5rem; }
         .package-name { font-family: 'Noto Serif KR',serif; font-size: 1.05rem; font-weight: 400; color: var(--text-dark); margin-bottom: 1.2rem; line-height: 1.5; }
         .package-price { font-family: 'Cormorant Garamond',serif; font-size: 2.3rem; font-weight: 300; color: var(--text-dark); margin-bottom: 0.15rem; }
@@ -370,78 +301,7 @@
         .package-features li { font-size: 0.83rem; color: var(--text-body); line-height: 1.6; padding-left: 1.2rem; position: relative; font-weight: 300; }
         .package-features li::before { content: ''; position: absolute; left: 0; top: 0.55em; width: 5px; height: 5px; border: 1px solid var(--gold); transform: rotate(45deg); }
         .package-cta { margin-top: auto; padding-top: 1.2rem; border-top: 1px solid var(--border-light); }
-        @media (max-width: 900px) {
-            .packages-grid { grid-template-columns: 1fr; max-width: 480px; margin: 0 auto; }
-        }
-
-        /* Add-ons */
-        .addons-list { border: 1px solid var(--border-light); background: var(--ivory); }
-        .addon-item {
-            display: flex; justify-content: space-between; align-items: center;
-            padding: 1.1rem 1.5rem; border-bottom: 1px solid var(--border-light); gap: 1rem;
-        }
-        .addon-item:last-child { border-bottom: none; }
-        .addon-name { font-size: 0.88rem; color: var(--text-dark); font-weight: 500; margin-bottom: 0.2rem; }
-        .addon-desc { font-size: 0.78rem; color: var(--text-light); font-weight: 300; }
-        .addon-price { font-family: 'Cormorant Garamond',serif; font-size: 1rem; color: var(--gold); white-space: nowrap; font-weight: 500; }
-
-        /* ═══════════════════ PROCESS ═══════════════════ */
-        .process-steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; position: relative; }
-        .process-steps::before {
-            content: ''; position: absolute; top: 1.6rem; left: 12.5%; right: 12.5%; height: 1px;
-            background: linear-gradient(90deg, transparent, var(--border), var(--border), transparent);
-        }
-        .process-step { text-align: center; padding: 0 1rem; position: relative; }
-        .step-number {
-            width: 3.2rem; height: 3.2rem; border: 1px solid var(--border);
-            background: var(--cream); display: flex; align-items: center; justify-content: center;
-            margin: 0 auto 1.25rem; position: relative; z-index: 1;
-            font-family: 'Cormorant Garamond',serif; font-size: 1rem; color: var(--gold);
-            transition: all 0.3s;
-        }
-        .process-step:hover .step-number { border-color: var(--gold); background: var(--gold-muted); }
-        .step-title { font-size: 0.88rem; color: var(--text-dark); font-weight: 500; margin-bottom: 0.5rem; }
-        .step-desc { font-size: 0.78rem; color: var(--text-light); line-height: 1.7; font-weight: 300; }
-        @media (max-width: 768px) {
-            .process-steps { grid-template-columns: repeat(2, 1fr); gap: 2rem; }
-            .process-steps::before { display: none; }
-        }
-
-        /* ═══════════════════ CONTACT ═══════════════════ */
-        #contact .contact-card {
-            max-width: 520px; margin: 0 auto; text-align: center;
-            background: var(--ivory); border: 1px solid var(--border-light);
-            padding: 3.5rem 3rem; box-shadow: var(--shadow-card);
-        }
-        .contact-icon-wrap {
-            width: 56px; height: 56px; background: #FEE500;
-            border-radius: 50%; display: flex; align-items: center; justify-content: center;
-            margin: 0 auto 1.75rem;
-        }
-        .contact-icon-wrap svg { width: 28px; height: 28px; fill: #191919; }
-        #contact .contact-card h3 {
-            font-family: 'Noto Serif KR',serif; font-size: 1.25rem; font-weight: 400;
-            color: var(--text-dark); line-height: 1.7; margin-bottom: 1.25rem;
-        }
-        #contact .contact-card p { font-size: 0.88rem; color: var(--text-light); line-height: 1.9; font-weight: 300; margin-bottom: 2rem; }
-        #contact .contact-card p strong { color: var(--text-dark); font-weight: 600; }
-        .kakao-btn {
-            display: inline-flex; align-items: center; gap: 0.6rem;
-            background: #FEE500; color: #191919;
-            padding: 0.9rem 2.2rem; font-size: 0.82rem; font-weight: 600;
-            text-decoration: none; letter-spacing: 0.05em;
-            transition: all 0.3s; border-radius: 0;
-        }
-        .kakao-btn:hover { background: #f5da00; transform: translateY(-2px); box-shadow: 0 6px 20px rgba(254,229,0,0.3); }
-        .kakao-btn svg { width: 18px; height: 18px; fill: #191919; }
-        .contact-social { display: flex; justify-content: center; gap: 1.25rem; margin-top: 1.75rem; padding-top: 1.75rem; border-top: 1px solid var(--border-light); }
-        .social-link {
-            width: 38px; height: 38px; border: 1px solid var(--border-light);
-            display: flex; align-items: center; justify-content: center;
-            color: var(--text-light); transition: all 0.3s; text-decoration: none;
-        }
-        .social-link:hover { border-color: var(--gold); color: var(--gold); }
-        .social-link svg { width: 15px; height: 15px; fill: currentColor; }
+        @media (max-width: 900px) { .packages-grid { grid-template-columns: 1fr; max-width: 480px; margin: 0 auto; } }
 
         /* ═══════════════════ ADDON CARDS ═══════════════════ */
         .addon-card {
@@ -451,118 +311,80 @@
             transition: box-shadow 0.4s, transform 0.4s;
         }
         .addon-card:hover { box-shadow: var(--shadow-card); transform: translateY(-2px); }
-        .addon-card-video {
-            position: relative; aspect-ratio: 16/10; overflow: hidden;
-            background: var(--cream-deep); flex-shrink: 0;
-        }
-        .addon-card-video video {
-            width: 100%; height: 100%; object-fit: cover; display: block;
-            transition: transform 0.6s cubic-bezier(0.22,1,0.36,1);
-        }
+        .addon-card-video { position: relative; aspect-ratio: 16/10; overflow: hidden; background: var(--cream-deep); flex-shrink: 0; }
+        .addon-card-video video { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.6s cubic-bezier(0.22,1,0.36,1); }
         .addon-card:hover .addon-card-video video { transform: scale(1.03); }
-        .addon-card-video-label {
-            position: absolute; bottom: 0.75rem; left: 0.85rem;
-            font-family: 'Cormorant Garamond',serif; font-size: 0.68rem;
-            letter-spacing: 0.25em; text-transform: uppercase; color: rgba(255,255,255,0.7);
-        }
-        /* placeholder when no video */
-        .addon-card-video::after {
-            content: attr(data-placeholder);
-            position: absolute; inset: 0;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 0.7rem; color: var(--text-faint); font-family: monospace;
-        }
-        .addon-card-body {
-            padding: 2rem 2.25rem; display: flex; flex-direction: column; justify-content: center; gap: 0.9rem;
-        }
+        .addon-card-video-label { position: absolute; bottom: 0.75rem; left: 0.85rem; font-family: 'Cormorant Garamond',serif; font-size: 0.68rem; letter-spacing: 0.25em; text-transform: uppercase; color: rgba(255,255,255,0.7); }
+        .addon-card-body { padding: 2rem 2.25rem; display: flex; flex-direction: column; justify-content: center; gap: 0.9rem; }
         .addon-card-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; }
         .addon-card-name { font-family: 'Noto Serif KR',serif; font-size: 1.1rem; font-weight: 400; color: var(--text-dark); margin-bottom: 0.35rem; }
         .addon-card-price { font-family: 'Cormorant Garamond',serif; font-size: 1.7rem; font-weight: 300; color: var(--gold); line-height: 1; }
-        .addon-card-tag {
-            flex-shrink: 0; background: var(--gold-muted); border: 1px solid var(--border);
-            color: var(--gold); font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase;
-            padding: 0.3rem 0.7rem; white-space: nowrap; height: fit-content; margin-top: 0.2rem;
-        }
+        .addon-card-tag { flex-shrink: 0; background: var(--gold-muted); border: 1px solid var(--border); color: var(--gold); font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase; padding: 0.3rem 0.7rem; white-space: nowrap; height: fit-content; margin-top: 0.2rem; }
         .addon-card-desc { font-size: 0.87rem; color: var(--text-body); line-height: 1.8; font-weight: 300; }
-        .addon-card-notice {
-            display: flex; align-items: flex-start; gap: 0.5rem;
-            font-size: 0.75rem; color: var(--text-light); line-height: 1.6; font-weight: 300;
-            padding-top: 0.75rem; border-top: 1px solid var(--border-light);
-        }
+        .addon-card-notice { display: flex; align-items: flex-start; gap: 0.5rem; font-size: 0.75rem; color: var(--text-light); line-height: 1.6; font-weight: 300; padding-top: 0.75rem; border-top: 1px solid var(--border-light); }
         .addon-card-notice svg { flex-shrink: 0; margin-top: 2px; stroke: var(--text-faint); }
-        @media (max-width: 860px) {
-            .addon-card { grid-template-columns: 1fr; }
-            .addon-card-video { aspect-ratio: 16/9; }
-        }
+        @media (max-width: 860px) { .addon-card { grid-template-columns: 1fr; } .addon-card-video { aspect-ratio: 16/9; } }
+
+        /* ═══════════════════ PROCESS ═══════════════════ */
+        .process-steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; position: relative; }
+        .process-steps::before { content: ''; position: absolute; top: 1.6rem; left: 12.5%; right: 12.5%; height: 1px; background: linear-gradient(90deg, transparent, var(--border), var(--border), transparent); }
+        .process-step { text-align: center; padding: 0 1rem; position: relative; }
+        .step-number { width: 3.2rem; height: 3.2rem; border: 1px solid var(--border); background: var(--cream); display: flex; align-items: center; justify-content: center; margin: 0 auto 1.25rem; position: relative; z-index: 1; font-family: 'Cormorant Garamond',serif; font-size: 1rem; color: var(--gold); transition: all 0.3s; }
+        .process-step:hover .step-number { border-color: var(--gold); background: var(--gold-muted); }
+        .step-title { font-size: 0.88rem; color: var(--text-dark); font-weight: 500; margin-bottom: 0.5rem; }
+        .step-desc { font-size: 0.78rem; color: var(--text-light); line-height: 1.7; font-weight: 300; }
+        @media (max-width: 768px) { .process-steps { grid-template-columns: repeat(2, 1fr); gap: 2rem; } .process-steps::before { display: none; } }
 
         /* ═══════════════════ NOTICE ═══════════════════ */
-        .notice-item {
-            display: flex; gap: 1.1rem; align-items: flex-start;
-            padding: 1.5rem; background: var(--cream);
-            border: 1px solid var(--border-light);
-            transition: border-color 0.3s;
-        }
+        .notice-item { display: flex; gap: 1.1rem; align-items: flex-start; padding: 1.5rem; background: var(--cream); border: 1px solid var(--border-light); transition: border-color 0.3s; }
         .notice-item:hover { border-color: var(--border); }
-        .notice-icon {
-            width: 36px; height: 36px; flex-shrink: 0;
-            display: flex; align-items: center; justify-content: center;
-            border: 1px solid var(--border); background: var(--ivory);
-        }
+        .notice-icon { width: 36px; height: 36px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; border: 1px solid var(--border); background: var(--ivory); }
         .notice-icon svg { width: 15px; height: 15px; }
         .notice-title { font-size: 0.88rem; color: var(--text-dark); font-weight: 500; margin-bottom: 0.4rem; }
         .notice-body { font-size: 0.8rem; color: var(--text-light); line-height: 1.75; font-weight: 300; }
-        @media (max-width: 640px) {
-            .notice-item { grid-column: span 1; }
-            div[style*="grid-template-columns:1fr 1fr"] { grid-template-columns: 1fr !important; }
-        }
 
         /* ═══════════════════ DISCOUNT ═══════════════════ */
-        .discount-item {
-            padding: 1.75rem; background: var(--ivory);
-            border: 1px solid var(--border-light);
-            transition: all 0.3s;
-        }
+        .discount-item { padding: 1.75rem; background: var(--ivory); border: 1px solid var(--border-light); transition: all 0.3s; }
         .discount-item:hover { border-color: var(--border); transform: translateY(-2px); box-shadow: var(--shadow-soft); }
-        .discount-amount {
-            font-family: 'Cormorant Garamond',serif; font-size: 1.5rem; font-weight: 300;
-            color: var(--gold); line-height: 1; margin-bottom: 0.4rem;
-        }
+        .discount-amount { font-family: 'Cormorant Garamond',serif; font-size: 1.5rem; font-weight: 300; color: var(--gold); line-height: 1; margin-bottom: 0.4rem; }
         .discount-label { font-size: 0.85rem; color: var(--text-dark); font-weight: 500; margin-bottom: 0.7rem; }
         .discount-body { font-size: 0.8rem; color: var(--text-light); line-height: 1.75; font-weight: 300; }
-        footer {
-            background: var(--navy); padding: 3rem 2rem;
-            text-align: center; border-top: 1px solid rgba(255,255,255,0.04);
-        }
+
+        /* ═══════════════════ CONTACT ═══════════════════ */
+        #contact .contact-card { max-width: 520px; margin: 0 auto; text-align: center; background: var(--ivory); border: 1px solid var(--border-light); padding: 3.5rem 3rem; box-shadow: var(--shadow-card); }
+        .contact-icon-wrap { width: 56px; height: 56px; background: #FEE500; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.75rem; }
+        .contact-icon-wrap svg { width: 28px; height: 28px; fill: #191919; }
+        #contact .contact-card h3 { font-family: 'Noto Serif KR',serif; font-size: 1.25rem; font-weight: 400; color: var(--text-dark); line-height: 1.7; margin-bottom: 1.25rem; }
+        #contact .contact-card p { font-size: 0.88rem; color: var(--text-light); line-height: 1.9; font-weight: 300; margin-bottom: 2rem; }
+        #contact .contact-card p strong { color: var(--text-dark); font-weight: 600; }
+        .kakao-btn { display: inline-flex; align-items: center; gap: 0.6rem; background: #FEE500; color: #191919; padding: 0.9rem 2.2rem; font-size: 0.82rem; font-weight: 600; text-decoration: none; letter-spacing: 0.05em; transition: all 0.3s; border-radius: 0; }
+        .kakao-btn:hover { background: #f5da00; transform: translateY(-2px); box-shadow: 0 6px 20px rgba(254,229,0,0.3); }
+        .kakao-btn svg { width: 18px; height: 18px; fill: #191919; }
+        .contact-social { display: flex; justify-content: center; gap: 1.25rem; margin-top: 1.75rem; padding-top: 1.75rem; border-top: 1px solid var(--border-light); }
+        .social-link { width: 38px; height: 38px; border: 1px solid var(--border-light); display: flex; align-items: center; justify-content: center; color: var(--text-light); transition: all 0.3s; text-decoration: none; }
+        .social-link:hover { border-color: var(--gold); color: var(--gold); }
+        .social-link svg { width: 15px; height: 15px; fill: currentColor; }
+
+        /* ═══════════════════ FOOTER ═══════════════════ */
+        footer { background: var(--navy); padding: 3rem 2rem; text-align: center; border-top: 1px solid rgba(255,255,255,0.04); }
         .footer-logo { height: 34px; opacity: 0.5; margin-bottom: 1rem; filter: brightness(0) invert(1); }
         .footer-text { font-size: 0.72rem; color: rgba(255,255,255,0.28); letter-spacing: 0.1em; }
 
-        /* ═══════════════════ MODAL ═══════════════════ */
-        .lightbox-modal {
-            display: none; position: fixed; inset: 0; z-index: 9999;
-            background: rgba(0,0,0,0.9); align-items: center; justify-content: center; padding: 2rem;
-        }
+        /* ═══════════════════ MODALS ═══════════════════ */
+        .lightbox-modal { display: none; position: fixed; inset: 0; z-index: 9999; background: rgba(0,0,0,0.9); align-items: center; justify-content: center; padding: 2rem; }
         .lightbox-modal.open { display: flex; }
         .lightbox-modal img { max-width: 90vw; max-height: 85vh; object-fit: contain; }
-        .lightbox-close {
-            position: absolute; top: 1.5rem; right: 1.5rem;
-            width: 40px; height: 40px; border: 1px solid rgba(255,255,255,0.2);
-            background: none; color: white; cursor: pointer; font-size: 1.2rem;
-            display: flex; align-items: center; justify-content: center;
-        }
-        .lightbox-nav {
-            position: absolute; top: 50%; transform: translateY(-50%);
-            width: 44px; height: 44px; border: 1px solid rgba(255,255,255,0.2);
-            background: none; color: white; cursor: pointer; font-size: 1.2rem;
-            display: flex; align-items: center; justify-content: center;
-        }
+        .lightbox-close { position: absolute; top: 1.5rem; right: 1.5rem; width: 40px; height: 40px; border: 1px solid rgba(255,255,255,0.2); background: none; color: white; cursor: pointer; font-size: 1.2rem; display: flex; align-items: center; justify-content: center; }
+        .lightbox-nav { position: absolute; top: 50%; transform: translateY(-50%); width: 44px; height: 44px; border: 1px solid rgba(255,255,255,0.2); background: none; color: white; cursor: pointer; font-size: 1.2rem; display: flex; align-items: center; justify-content: center; }
         .lightbox-prev { left: 1.5rem; }
         .lightbox-next { right: 1.5rem; }
+        .lightbox-nav:hover, .lightbox-close:hover { border-color: var(--gold); color: var(--gold); }
         #pwModal.open { display: flex; }
     </style>
 </head>
 <body>
 
-    <!-- ───────── NAV ───────── -->
+    <!-- NAV -->
     <nav id="navbar">
         <a href="#hero"><img src="asset/typologo_main.png" alt="Prosper Snap" class="nav-logo" style="height:36px; object-fit:contain;" onerror="this.style.display='none'; this.nextSibling.style.display='block'"><span style="display:none; font-family:'Cormorant Garamond',serif; font-size:1.1rem; letter-spacing:0.2em; color:var(--text-dark);">PROSPER SNAP</span></a>
         <ul class="nav-links" id="navLinks">
@@ -578,7 +400,7 @@
         </div>
     </nav>
 
-    <!-- ───────── HERO ───────── -->
+    <!-- HERO -->
     <section class="hero" id="hero">
         <div class="hero-deco-top"></div>
         <div class="hero-content">
@@ -587,13 +409,7 @@
                 <div class="hero-ornament-diamond"></div>
                 <div class="hero-ornament-line"></div>
             </div>
-            <h1 class="hero-title" style="
-                font-family:'Cormorant Garamond',serif;
-                font-style:italic; font-weight:400;
-                font-size: clamp(1.4rem, 4.5vw, 3.8rem);
-                letter-spacing:0.02em; line-height:1.2;
-                white-space: nowrap;
-            ">All your perfect moments</h1>
+            <h1 class="hero-title" style="font-family:'Cormorant Garamond',serif; font-style:italic; font-weight:400; font-size:clamp(1.4rem, 4.5vw, 3.8rem); letter-spacing:0.02em; line-height:1.2; white-space:nowrap;">All your perfect moments</h1>
             <p class="hero-subtitle">Premium Wedding Snap Photography</p>
             <p class="hero-desc">두 분의 이야기를 자연스럽고 감성적인 시선으로 담아내는<br>프리미엄 웨딩 스냅 스튜디오입니다.</p>
             <div class="hero-cta-group">
@@ -610,7 +426,7 @@
         </div>
     </section>
 
-    <!-- ───────── ABOUT ───────── -->
+    <!-- ABOUT -->
     <div class="section-alt" id="about">
         <div class="section-inner">
             <div class="section-header reveal">
@@ -625,7 +441,6 @@
             <div class="about-wrapper">
                 <div class="about-visual reveal">
                     <div class="about-photo-frame no-image" id="aboutPhotoFrame">
-                        <!-- asset/about.jpg 이미지를 넣으면 자동으로 표시됩니다 -->
                         <img src="asset/about.jpg" alt="Prosper Snap 작가" style="display:none" id="aboutImg"
                              onload="this.style.display='block'; this.parentElement.classList.remove('no-image')">
                         <div class="gallery-placeholder-icon">
@@ -640,21 +455,15 @@
                     <p>야외 스냅부터 본식 DVD까지, 하루 전체를 함께하며 소중한 날의 모든 표정과 분위기를 담아드립니다.</p>
                     <div style="margin-top: 2.5rem; display: flex; flex-direction: column; gap: 0.9rem;">
                         <div style="display:flex; align-items:flex-start; gap:0.75rem; padding: 0.9rem 1rem; background:var(--cream); border-left:2px solid var(--border);">
-                            <div style="flex-shrink:0; margin-top:3px;">
-                                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.8"><polyline points="20 6 9 17 4 12"/></svg>
-                            </div>
+                            <div style="flex-shrink:0; margin-top:3px;"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.8"><polyline points="20 6 9 17 4 12"/></svg></div>
                             <div style="font-size:0.85rem; color:var(--text-body); line-height:1.6; font-weight:300;"><strong style="color:var(--text-dark); font-weight:500;">컬러 & 세밀 보정</strong> — 색감 보정은 물론 얼굴, 몸매, 의상 등 세밀한 보정까지 제공합니다.</div>
                         </div>
                         <div style="display:flex; align-items:flex-start; gap:0.75rem; padding: 0.9rem 1rem; background:var(--cream); border-left:2px solid var(--border);">
-                            <div style="flex-shrink:0; margin-top:3px;">
-                                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.8"><polyline points="20 6 9 17 4 12"/></svg>
-                            </div>
+                            <div style="flex-shrink:0; margin-top:3px;"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.8"><polyline points="20 6 9 17 4 12"/></svg></div>
                             <div style="font-size:0.85rem; color:var(--text-body); line-height:1.6; font-weight:300;"><strong style="color:var(--text-dark); font-weight:500;">원본 데이터 기본 제공</strong> — 모든 패키지에 촬영 원본 파일을 함께 전달해드립니다.</div>
                         </div>
                         <div style="display:flex; align-items:flex-start; gap:0.75rem; padding: 0.9rem 1rem; background:var(--cream); border-left:2px solid var(--border);">
-                            <div style="flex-shrink:0; margin-top:3px;">
-                                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.8"><polyline points="20 6 9 17 4 12"/></svg>
-                            </div>
+                            <div style="flex-shrink:0; margin-top:3px;"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.8"><polyline points="20 6 9 17 4 12"/></svg></div>
                             <div style="font-size:0.85rem; color:var(--text-body); line-height:1.6; font-weight:300;"><strong style="color:var(--text-dark); font-weight:500;">온라인 전달</strong> — 별도 USB 없이 링크를 통해 간편하게 수령하실 수 있습니다.</div>
                         </div>
                     </div>
@@ -663,7 +472,7 @@
         </div>
     </div>
 
-    <!-- ───────── GALLERY ───────── -->
+    <!-- GALLERY -->
     <section id="gallery" style="max-width:1400px; padding: 6rem 1.5rem;">
         <div class="section-header reveal">
             <span class="section-label">Portfolio</span>
@@ -674,12 +483,10 @@
                 <div class="section-ornament-line"></div>
             </div>
         </div>
-        <div class="gallery-grid reveal" id="galleryGrid" style="transition-delay: 0.1s;">
-            <!-- gallery-config.js에서 동적으로 생성 -->
-        </div>
+        <div class="gallery-grid reveal" id="galleryGrid" style="transition-delay: 0.1s;"></div>
     </section>
 
-    <!-- ───────── PACKAGES ───────── -->
+    <!-- PACKAGES -->
     <div class="section-alt" id="packages">
         <div class="section-inner">
             <div class="section-header reveal">
@@ -692,7 +499,6 @@
                 </div>
             </div>
             <div class="packages-grid">
-                <!-- Standard -->
                 <div class="package-card reveal">
                     <span class="package-tier">Standard</span>
                     <h3 class="package-name">웨딩 스냅</h3>
@@ -707,7 +513,6 @@
                         <a href="https://pf.kakao.com/_GxnGIX" target="_blank" class="btn btn-outline-dark" style="font-size:0.75rem; width:100%; justify-content:center;">문의하기</a>
                     </div>
                 </div>
-                <!-- Deluxe -->
                 <div class="package-card reveal" style="transition-delay: 0.1s;">
                     <span class="package-tier">Deluxe</span>
                     <h3 class="package-name">웨딩 스냅</h3>
@@ -723,7 +528,6 @@
                         <a href="https://pf.kakao.com/_GxnGIX" target="_blank" class="btn btn-outline-dark" style="font-size:0.75rem; width:100%; justify-content:center;">문의하기</a>
                     </div>
                 </div>
-                <!-- Premium -->
                 <div class="package-card featured reveal" style="transition-delay: 0.2s;">
                     <div class="package-badge">BEST</div>
                     <span class="package-tier">Premium</span>
@@ -743,7 +547,6 @@
                 </div>
             </div>
 
-            <!-- Add-ons -->
             <div style="margin-top: 5rem;">
                 <div class="section-header reveal">
                     <span class="section-label">Add-on Options</span>
@@ -754,17 +557,10 @@
                         <div class="section-ornament-line"></div>
                     </div>
                 </div>
-
-                <!-- Addon cards with video -->
                 <div style="display:flex; flex-direction:column; gap:2rem;">
-
-                    <!-- 드론 -->
                     <div class="addon-card reveal">
                         <div class="addon-card-video">
-                            <video src="asset/addon/drone.mp4" muted loop playsinline
-                                onmouseenter="this.play()" onmouseleave="this.pause(); this.currentTime=0;"
-                                poster="asset/addon/drone_thumb.jpg">
-                            </video>
+                            <video src="asset/addon/drone.mp4" muted loop playsinline onmouseenter="this.play()" onmouseleave="this.pause(); this.currentTime=0;" poster="asset/addon/drone_thumb.jpg"></video>
                             <div class="addon-card-video-label">Drone</div>
                         </div>
                         <div class="addon-card-body">
@@ -781,14 +577,9 @@
                             </div>
                         </div>
                     </div>
-
-                    <!-- Wedding Teaser Film -->
                     <div class="addon-card reveal" style="transition-delay:0.05s;">
                         <div class="addon-card-video">
-                            <video src="asset/addon/teaser.mp4" muted loop playsinline
-                                onmouseenter="this.play()" onmouseleave="this.pause(); this.currentTime=0;"
-                                poster="asset/addon/teaser_thumb.jpg">
-                            </video>
+                            <video src="asset/addon/teaser.mp4" muted loop playsinline onmouseenter="this.play()" onmouseleave="this.pause(); this.currentTime=0;" poster="asset/addon/teaser_thumb.jpg"></video>
                             <div class="addon-card-video-label">Teaser Film</div>
                         </div>
                         <div class="addon-card-body">
@@ -806,14 +597,9 @@
                             </div>
                         </div>
                     </div>
-
-                    <!-- 본식 DVD -->
                     <div class="addon-card reveal" style="transition-delay:0.1s;">
                         <div class="addon-card-video">
-                            <video src="asset/addon/dvd.mp4" muted loop playsinline
-                                onmouseenter="this.play()" onmouseleave="this.pause(); this.currentTime=0;"
-                                poster="asset/addon/dvd_thumb.jpg">
-                            </video>
+                            <video src="asset/addon/dvd.mp4" muted loop playsinline onmouseenter="this.play()" onmouseleave="this.pause(); this.currentTime=0;" poster="asset/addon/dvd_thumb.jpg"></video>
                             <div class="addon-card-video-label">Wedding DVD</div>
                         </div>
                         <div class="addon-card-body">
@@ -831,13 +617,12 @@
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- ───────── PROCESS ───────── -->
+    <!-- PROCESS -->
     <section id="process">
         <div class="section-header reveal">
             <span class="section-label">How It Works</span>
@@ -872,7 +657,7 @@
         </div>
     </section>
 
-    <!-- ───────── NOTICE ───────── -->
+    <!-- NOTICE -->
     <div class="section-alt" id="notice">
         <div class="section-inner">
             <div class="section-header reveal">
@@ -886,44 +671,34 @@
             </div>
             <div style="display:grid; grid-template-columns:1fr 1fr; gap:1.25rem; max-width:860px; margin:0 auto;" class="reveal">
                 <div class="notice-item">
-                    <div class="notice-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 0 0 0-7.78z"/></svg>
-                    </div>
+                    <div class="notice-icon"><svg viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
                     <div>
                         <div class="notice-title">소품 및 의상 준비</div>
                         <div class="notice-body">촬영에 사용되는 소품과 의상은 고객님이 직접 준비해주셔야 합니다. 컨셉에 맞는 아이템을 미리 상담 후 준비해주시면 더욱 만족스러운 결과물을 얻으실 수 있습니다.</div>
                     </div>
                 </div>
                 <div class="notice-item">
-                    <div class="notice-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                    </div>
+                    <div class="notice-icon"><svg viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
                     <div>
                         <div class="notice-title">촬영 지역 안내</div>
                         <div class="notice-body">서울 및 수도권 이외 지역 촬영의 경우 교통비 등 추가 비용이 발생할 수 있습니다. 사전에 반드시 협의가 필요하오니 문의 시 촬영 장소를 함께 알려주세요.</div>
                     </div>
                 </div>
                 <div class="notice-item">
-                    <div class="notice-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-                    </div>
+                    <div class="notice-icon"><svg viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div>
                     <div>
                         <div class="notice-title">예약 및 일정 변경</div>
                         <div class="notice-body">예약 확정 후 촬영 7일 전까지는 일정 변경이 가능합니다. 그 이후 변경 또는 취소는 예약금 환불이 어려울 수 있으니 일정 확정 전 충분히 검토해주세요.</div>
                     </div>
                 </div>
                 <div class="notice-item">
-                    <div class="notice-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-                    </div>
+                    <div class="notice-icon"><svg viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
                     <div>
                         <div class="notice-title">결과물 납기</div>
                         <div class="notice-body">보정 완료된 사진은 촬영일로부터 4~6주 이내에 전달드립니다. 시즌에 따라 다소 지연될 수 있으며, 진행 상황은 카카오톡으로 안내드립니다.</div>
                     </div>
                 </div>
             </div>
-
-            <!-- Discount Section -->
             <div style="margin-top: 4rem;">
                 <div class="section-header reveal">
                     <span class="section-label">Benefits</span>
@@ -935,7 +710,7 @@
                         <div class="section-ornament-line"></div>
                     </div>
                 </div>
-                <div style="display:grid; grid-template-columns:repeat(2,1fr); gap:0.85rem; max-width:860px; margin:0 auto;" class="reveal" style="transition-delay:0.1s;">
+                <div style="display:grid; grid-template-columns:repeat(2,1fr); gap:0.85rem; max-width:860px; margin:0 auto;" class="reveal">
                     <div class="discount-item">
                         <div class="discount-amount">30,000원 페이백</div>
                         <div class="discount-label">지인 소개</div>
@@ -961,7 +736,7 @@
         </div>
     </div>
 
-    <!-- ───────── CONTACT ───────── -->
+    <!-- CONTACT -->
     <section id="contact">
         <div class="section-header reveal">
             <span class="section-label">Contact &amp; Booking</span>
@@ -991,11 +766,11 @@
     </section>
 
     <footer>
-        <img src="asset/CI_snap.png" alt="PROSPER SNAP" class="footer-logo" onerror="this.style.display='none'">
+        <img src="asset/typologo_main.png" alt="PROSPER SNAP" class="footer-logo" onerror="this.style.display='none'">
         <p class="footer-text">&copy; 2025 PROSPER SNAP. All Rights Reserved.</p>
     </footer>
 
-    <!-- ───────── LIGHTBOX ───────── -->
+    <!-- LIGHTBOX -->
     <div class="lightbox-modal" id="lightboxModal">
         <button class="lightbox-close" onclick="closeLightbox()">✕</button>
         <button class="lightbox-nav lightbox-prev" onclick="lightboxNav(-1)">&#8592;</button>
@@ -1003,118 +778,64 @@
         <button class="lightbox-nav lightbox-next" onclick="lightboxNav(1)">&#8594;</button>
     </div>
 
-    <!-- ───────── PASSWORD MODAL ───────── -->
-    <div id="pwModal" style="
-        display:none; position:fixed; inset:0; z-index:9999;
-        background:rgba(0,0,0,0.6); backdrop-filter:blur(6px);
-        align-items:center; justify-content:center;
-    ">
-        <div style="
-            background:var(--ivory); padding:2.5rem 2.5rem 2rem;
-            border:1px solid var(--border); min-width:320px; text-align:center;
-            box-shadow:0 20px 60px rgba(0,0,0,0.2);
-        ">
+    <!-- PASSWORD MODAL -->
+    <div id="pwModal" style="display:none; position:fixed; inset:0; z-index:9999; background:rgba(0,0,0,0.6); backdrop-filter:blur(6px); align-items:center; justify-content:center;">
+        <div style="background:var(--ivory); padding:2.5rem 2.5rem 2rem; border:1px solid var(--border); min-width:320px; text-align:center; box-shadow:0 20px 60px rgba(0,0,0,0.2);">
             <div style="font-family:'Cormorant Garamond',serif; font-size:0.7rem; letter-spacing:0.3em; text-transform:uppercase; color:var(--gold); margin-bottom:1rem;">Admin Access</div>
             <h3 style="font-family:'Noto Serif KR',serif; font-size:1.1rem; font-weight:400; color:var(--text-dark); margin-bottom:1.75rem;">비밀번호를 입력해주세요</h3>
-            <input id="pwInput" type="password" placeholder="Password" style="
-                width:100%; padding:0.75rem 1rem; border:1px solid var(--border-light);
-                background:var(--cream); font-size:0.9rem; outline:none;
-                font-family:'Noto Sans KR',sans-serif; color:var(--text-dark);
-                letter-spacing:0.1em; transition:border 0.2s;
-            " onfocus="this.style.borderColor='var(--gold)'" onblur="this.style.borderColor='var(--border-light)'">
-            <div id="pwError" style="display:none; font-size:0.75rem; color:#c0392b; margin-top:0.6rem; letter-spacing:0.03em;">
-                비밀번호가 올바르지 않습니다.
-            </div>
+            <input id="pwInput" type="password" placeholder="Password" style="width:100%; padding:0.75rem 1rem; border:1px solid var(--border-light); background:var(--cream); font-size:0.9rem; outline:none; font-family:'Noto Sans KR',sans-serif; color:var(--text-dark); letter-spacing:0.1em; transition:border 0.2s;" onfocus="this.style.borderColor='var(--gold)'" onblur="this.style.borderColor='var(--border-light)'">
+            <div id="pwError" style="display:none; font-size:0.75rem; color:#c0392b; margin-top:0.6rem; letter-spacing:0.03em;">비밀번호가 올바르지 않습니다.</div>
             <div style="display:flex; gap:0.75rem; margin-top:1.5rem;">
-                <button onclick="closePwModal()" style="
-                    flex:1; padding:0.75rem; background:transparent;
-                    border:1px solid var(--border-light); color:var(--text-light);
-                    font-size:0.75rem; letter-spacing:0.1em; text-transform:uppercase;
-                    cursor:pointer; font-family:'Noto Sans KR',sans-serif;
-                    transition:all 0.2s;
-                " onmouseover="this.style.borderColor='var(--gold)';this.style.color='var(--gold)'"
-                   onmouseout="this.style.borderColor='var(--border-light)';this.style.color='var(--text-light)'">취소</button>
-                <button onclick="submitPassword()" style="
-                    flex:1; padding:0.75rem; background:var(--gold);
-                    border:none; color:#fff;
-                    font-size:0.75rem; letter-spacing:0.1em; text-transform:uppercase;
-                    cursor:pointer; font-family:'Noto Sans KR',sans-serif;
-                    transition:background 0.2s;
-                " onmouseover="this.style.background='var(--gold-light)'"
-                   onmouseout="this.style.background='var(--gold)'">확인</button>
+                <button onclick="closePwModal()" style="flex:1; padding:0.75rem; background:transparent; border:1px solid var(--border-light); color:var(--text-light); font-size:0.75rem; letter-spacing:0.1em; text-transform:uppercase; cursor:pointer; font-family:'Noto Sans KR',sans-serif; transition:all 0.2s;" onmouseover="this.style.borderColor='var(--gold)';this.style.color='var(--gold)'" onmouseout="this.style.borderColor='var(--border-light)';this.style.color='var(--text-light)'">취소</button>
+                <button onclick="submitPassword()" style="flex:1; padding:0.75rem; background:var(--gold); border:none; color:#fff; font-size:0.75rem; letter-spacing:0.1em; text-transform:uppercase; cursor:pointer; font-family:'Noto Sans KR',sans-serif; transition:background 0.2s;" onmouseover="this.style.background='var(--gold-light)'" onmouseout="this.style.background='var(--gold)'">확인</button>
             </div>
         </div>
     </div>
 
-    <!-- ───────── ADMIN BAR ───────── -->
+    <!-- ADMIN BAR -->
     <div class="admin-bar">
         <span class="admin-bar-label">⚙ Admin Mode</span>
         <span class="admin-bar-note">각 슬롯에 이미지를 <strong style="color:var(--gold-light);">드래그앤드롭</strong>하거나, 마우스 올려 경로·레이아웃 수정</span>
         <button class="admin-export-btn" onclick="exportConfig()">gallery-config.js 다운로드</button>
     </div>
 
-    <!-- ═══════════════════════════════════════════════════
-         📸 GALLERY CONFIG
-         이 부분만 수정하면 갤러리 사진이 바뀝니다!
-
-         layout 옵션:
-           "feature"  → 크게 (2칸 너비 × 2줄 높이) — 대표 사진에 사용
-           "tall"     → 세로형 (1칸 × 2줄)
-           "wide"     → 가로형 (2칸 × 1줄)
-           "square"   → 기본 정방형 (1칸 × 1줄)
-
-         팁: 그리드 3칸이므로 한 줄에 총 3칸이 채워지도록 구성하세요.
-             예) feature(2) + square(1) = 3칸 한 줄
-                 tall(1) + square(1) + square(1) = 3칸 한 줄
-    ════════════════════════════════════════════════════ -->
+    <!-- ════════════════════════════════════════════
+         📸 GALLERY CONFIG — 이 배열만 수정하세요
+         layout: "feature"(2×2) | "tall"(1×2) | "wide"(2×1) | "square"(1×1)
+    ════════════════════════════════════════════ -->
     <script>
     const GALLERY_PHOTOS = [
-        // ─── Row 1: feature(2칸) + square(1칸) ───
         { src: "asset/gallery/01.jpg", layout: "feature",  alt: "" },
         { src: "asset/gallery/02.jpg", layout: "square",   alt: "" },
-
-        // ─── Row 2: tall(2줄) + square + square ───
         { src: "asset/gallery/03.jpg", layout: "tall",     alt: "" },
         { src: "asset/gallery/04.jpg", layout: "square",   alt: "" },
         { src: "asset/gallery/05.jpg", layout: "square",   alt: "" },
-
-        // ─── Row 3: wide(2칸) + square ───
         { src: "asset/gallery/06.jpg", layout: "wide",     alt: "" },
         { src: "asset/gallery/07.jpg", layout: "square",   alt: "" },
-
-        // ─── Row 4: square × 3 ───
         { src: "asset/gallery/08.jpg", layout: "square",   alt: "" },
         { src: "asset/gallery/09.jpg", layout: "square",   alt: "" },
         { src: "asset/gallery/10.jpg", layout: "square",   alt: "" },
-
-        // ─── Row 5: feature(2칸) + tall(2줄) ───
         { src: "asset/gallery/11.jpg", layout: "feature",  alt: "" },
         { src: "asset/gallery/12.jpg", layout: "tall",     alt: "" },
-
-        // ─── Row 6 (tall 이어서): square + square ───
         { src: "asset/gallery/13.jpg", layout: "square",   alt: "" },
         { src: "asset/gallery/14.jpg", layout: "square",   alt: "" },
     ];
     </script>
 
     <script>
-    /* ═══ Gallery Render ═══ */
-    let isAdmin = false; // 우측 하단 ⚙ 버튼으로 켜고 끄세요
-
     let currentLightboxIndex = 0;
-    const lightboxImages = [];
 
+    /* ═══ Gallery Build ═══ */
     function buildGallery() {
         const grid = document.getElementById('galleryGrid');
         grid.innerHTML = '';
+        const isAdminMode = document.body.classList.contains('admin-mode');
 
         GALLERY_PHOTOS.forEach((photo, i) => {
             const item = document.createElement('div');
             item.className = 'gallery-item';
             item.dataset.layout = photo.layout;
-            item.dataset.index = i;
 
-            // Try to load image
             const img = document.createElement('img');
             img.src = photo.src;
             img.alt = photo.alt || '';
@@ -1122,41 +843,34 @@
             img.onerror = function() {
                 item.classList.add('no-image');
                 this.style.display = 'none';
-                const iconDiv = document.createElement('div');
-                iconDiv.className = 'gallery-placeholder-icon';
-                iconDiv.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="1"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>`;
-                const pathDiv = document.createElement('div');
-                pathDiv.className = 'gallery-placeholder-path';
-                pathDiv.textContent = photo.src;
-                item.appendChild(iconDiv);
-                item.appendChild(pathDiv);
+                const icon = document.createElement('div');
+                icon.className = 'gallery-placeholder-icon';
+                icon.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="1"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>`;
+                const path = document.createElement('div');
+                path.className = 'gallery-placeholder-path';
+                path.textContent = photo.src;
+                item.appendChild(icon);
+                item.appendChild(path);
             };
-            img.onload = function() {
-                item.classList.remove('no-image');
-                lightboxImages[i] = photo.src;
-            };
+            img.onload = function() { item.classList.remove('no-image'); };
             item.appendChild(img);
 
-            // Hover overlay
             const overlay = document.createElement('div');
             overlay.className = 'gallery-overlay';
             item.appendChild(overlay);
 
-            if (!document.body.classList.contains('admin-mode')) {
+            if (!isAdminMode) {
                 item.addEventListener('click', () => openLightbox(i));
-            }
-
-            // Admin edit overlay
-            if (document.body.classList.contains('admin-mode')) {
+            } else {
                 const editOv = document.createElement('div');
                 editOv.className = 'gallery-edit-overlay';
                 editOv.innerHTML = `
                     <div class="edit-item-index">#${i+1}</div>
                     <div class="edit-overlay-title">사진 설정</div>
                     <div class="edit-field-label">파일 경로</div>
-                    <input class="edit-path-input" type="text" value="${photo.src}" placeholder="asset/gallery/01.jpg" data-idx="${i}">
+                    <input class="edit-path-input" type="text" value="${photo.src}" placeholder="asset/gallery/01.jpg">
                     <div class="edit-field-label">레이아웃</div>
-                    <select class="edit-layout-select" data-idx="${i}">
+                    <select class="edit-layout-select">
                         <option value="square"  ${photo.layout==='square' ?'selected':''}>square — 기본 (1×1)</option>
                         <option value="tall"    ${photo.layout==='tall'   ?'selected':''}>tall — 세로형 (1×2)</option>
                         <option value="wide"    ${photo.layout==='wide'   ?'selected':''}>wide — 가로형 (2×1)</option>
@@ -1164,144 +878,23 @@
                     </select>
                     <button class="edit-apply-btn" onclick="applyEdit(${i}, this)">적용</button>
                 `;
-                item.appendChild(editOv);
-                // prevent click-through on overlay
                 editOv.addEventListener('click', e => e.stopPropagation());
+                item.appendChild(editOv);
+                setupDragDrop(item, i);
             }
 
             grid.appendChild(item);
-
-            // 어드민 모드에서 드래그앤드롭 활성화
-            if (document.body.classList.contains('admin-mode')) {
-                setupDragDrop(item, i);
-            }
         });
     }
 
     function applyEdit(idx, btn) {
-        const container = btn.closest('.gallery-edit-overlay');
-        const newSrc = container.querySelector('.edit-path-input').value.trim();
-        const newLayout = container.querySelector('.edit-layout-select').value;
-        GALLERY_PHOTOS[idx].src = newSrc;
-        GALLERY_PHOTOS[idx].layout = newLayout;
+        const ov = btn.closest('.gallery-edit-overlay');
+        GALLERY_PHOTOS[idx].src = ov.querySelector('.edit-path-input').value.trim();
+        GALLERY_PHOTOS[idx].layout = ov.querySelector('.edit-layout-select').value;
         buildGallery();
     }
 
-    function exportConfig() {
-        const lines = GALLERY_PHOTOS.map(p =>
-            `    { src: "${p.src}", layout: "${p.layout}", alt: "${p.alt || ''}" }`
-        ).join(',\n');
-        const content = `// gallery-config.js\n// 이 파일을 수정하여 갤러리 사진을 관리하세요.\n// layout: "square" | "tall" | "wide" | "feature"\n\nconst GALLERY_PHOTOS = [\n${lines}\n];\n`;
-        const blob = new Blob([content], { type: 'text/javascript' });
-        const url = URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.href = url; a.download = 'gallery-config.js'; a.click();
-        URL.revokeObjectURL(url);
-    }
-
-    /* ═══ Lightbox ═══ */
-    function openLightbox(idx) {
-        const src = GALLERY_PHOTOS[idx]?.src;
-        if (!src) return;
-        currentLightboxIndex = idx;
-        document.getElementById('lightboxImg').src = src;
-        document.getElementById('lightboxModal').classList.add('open');
-        document.body.style.overflow = 'hidden';
-    }
-    function closeLightbox() {
-        document.getElementById('lightboxModal').classList.remove('open');
-        document.body.style.overflow = '';
-    }
-    function lightboxNav(dir) {
-        let next = currentLightboxIndex + dir;
-        if (next < 0) next = GALLERY_PHOTOS.length - 1;
-        if (next >= GALLERY_PHOTOS.length) next = 0;
-        openLightbox(next);
-    }
-    document.getElementById('lightboxModal').addEventListener('click', function(e) {
-        if (e.target === this) closeLightbox();
-    });
-    document.addEventListener('keydown', e => {
-        if (document.getElementById('lightboxModal').classList.contains('open')) {
-            if (e.key === 'ArrowLeft') lightboxNav(-1);
-            if (e.key === 'ArrowRight') lightboxNav(1);
-            if (e.key === 'Escape') closeLightbox();
-        }
-    });
-
-    /* ═══ Nav ═══ */
-    const navbar = document.getElementById('navbar');
-    window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 60));
-    function toggleNav() { document.getElementById('navLinks').classList.toggle('open'); }
-    function closeNav() { document.getElementById('navLinks').classList.remove('open'); }
-
-    /* ═══ Reveal ═══ */
-    const ro = new IntersectionObserver((entries) => {
-        entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); ro.unobserve(e.target); } });
-    }, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
-    document.querySelectorAll('.reveal').forEach(el => ro.observe(el));
-
-    /* ═══ Smooth scroll ═══ */
-    document.querySelectorAll('a[href^="#"]').forEach(a => {
-        a.addEventListener('click', function(e) {
-            if (this.getAttribute('href') === '#') return;
-            e.preventDefault();
-            const t = document.querySelector(this.getAttribute('href'));
-            if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        });
-    });
-
-    /* ═══ Init ═══ */
-    buildGallery();
-
-    /* ═══ Admin — URL 파라미터 방식 (?admin) ═══ */
-    const ADMIN_PASSWORD = 'prosper2025'; // ← 비밀번호 여기서 변경
-
-    if (new URLSearchParams(location.search).has('admin')) {
-        setTimeout(() => {
-            document.getElementById('pwModal').classList.add('open');
-            document.getElementById('pwInput').focus();
-        }, 300);
-    }
-
-    function toggleAdminMode() {
-        if (document.body.classList.contains('admin-mode')) {
-            document.body.classList.remove('admin-mode');
-            buildGallery();
-        } else {
-            document.getElementById('pwModal').classList.add('open');
-            setTimeout(() => document.getElementById('pwInput').focus(), 100);
-        }
-    }
-
-    function submitPassword() {
-        const input = document.getElementById('pwInput');
-        const msg   = document.getElementById('pwError');
-        if (input.value === ADMIN_PASSWORD) {
-            document.getElementById('pwModal').classList.remove('open');
-            input.value = ''; msg.style.display = 'none';
-            document.body.classList.add('admin-mode');
-            buildGallery();
-        } else {
-            msg.style.display = 'block';
-            input.value = ''; input.focus();
-        }
-    }
-
-    function closePwModal() {
-        document.getElementById('pwModal').classList.remove('open');
-        document.getElementById('pwInput').value = '';
-        document.getElementById('pwError').style.display = 'none';
-    }
-
-    document.addEventListener('keydown', e => {
-        if (document.getElementById('pwModal').classList.contains('open')) {
-            if (e.key === 'Enter')  submitPassword();
-            if (e.key === 'Escape') closePwModal();
-        }
-    });
-
-    /* ═══ 이미지 리사이즈 (Canvas) ═══ */
+    /* ═══ 이미지 리사이즈 ═══ */
     function resizeImageFile(file, maxPx = 1920) {
         return new Promise(resolve => {
             const reader = new FileReader();
@@ -1323,82 +916,133 @@
         });
     }
 
-    /* ═══ 드래그앤드롭 — 갤러리 아이템 ═══ */
+    /* ═══ 드래그앤드롭 ═══ */
     function setupDragDrop(item, idx) {
-        item.addEventListener('dragover', e => {
-            e.preventDefault();
-            item.style.outline = '2px solid var(--gold)';
-            item.style.background = 'rgba(176,141,87,0.08)';
-        });
-        item.addEventListener('dragleave', () => {
-            item.style.outline = '';
-            item.style.background = '';
-        });
+        item.addEventListener('dragover', e => { e.preventDefault(); item.style.outline = '2px solid var(--gold)'; });
+        item.addEventListener('dragleave', () => { item.style.outline = ''; });
         item.addEventListener('drop', async e => {
             e.preventDefault();
             item.style.outline = '';
-            item.style.background = '';
             const file = e.dataTransfer.files[0];
             if (!file || !file.type.startsWith('image/')) return;
-
-            // 로딩 표시
-            const loadingDiv = document.createElement('div');
-            loadingDiv.style.cssText = 'position:absolute;inset:0;background:rgba(0,0,0,0.5);display:flex;align-items:center;justify-content:center;color:white;font-size:0.75rem;letter-spacing:0.1em;z-index:200;';
-            loadingDiv.textContent = '처리 중...';
-            item.appendChild(loadingDiv);
-
+            const loading = document.createElement('div');
+            loading.style.cssText = 'position:absolute;inset:0;background:rgba(0,0,0,0.5);display:flex;align-items:center;justify-content:center;color:white;font-size:0.75rem;letter-spacing:0.1em;z-index:200;';
+            loading.textContent = '처리 중...';
+            item.appendChild(loading);
             const dataUrl = await resizeImageFile(file, 1920);
-
-            // 갤러리 배열 업데이트
             GALLERY_PHOTOS[idx].src = dataUrl;
             GALLERY_PHOTOS[idx]._filename = file.name.replace(/\.[^.]+$/, '.jpg');
             GALLERY_PHOTOS[idx]._isBlob = true;
-
-            item.removeChild(loadingDiv);
+            item.removeChild(loading);
             buildGallery();
         });
     }
 
-    /* ═══ export 수정 — blob 이미지 ZIP 다운로드 ═══ */
+    /* ═══ Export Config ═══ */
     async function exportConfig() {
         const blobItems = GALLERY_PHOTOS.filter(p => p._isBlob);
-
-        // 1) gallery-config.js 다운로드
         const lines = GALLERY_PHOTOS.map((p, i) => {
             const src = p._isBlob ? `asset/gallery/${p._filename || (String(i+1).padStart(2,'0')+'.jpg')}` : p.src;
             return `    { src: "${src}", layout: "${p.layout}", alt: "${p.alt || ''}" }`;
         }).join(',\n');
-        const configContent = `// gallery-config.js\n// layout: "square" | "tall" | "wide" | "feature"\n\nconst GALLERY_PHOTOS = [\n${lines}\n];\n`;
-        downloadBlob(new Blob([configContent], {type:'text/javascript'}), 'gallery-config.js');
-
-        // 2) 드롭된 이미지들 개별 다운로드
+        const configContent = `// gallery-config.js\n// layout: "square"|"tall"|"wide"|"feature"\n\nconst GALLERY_PHOTOS = [\n${lines}\n];\n`;
+        dlBlob(new Blob([configContent], {type:'text/javascript'}), 'gallery-config.js');
         for (const p of blobItems) {
             await new Promise(r => setTimeout(r, 200));
-            const fname = p._filename || 'image.jpg';
-            downloadBlob(dataURLtoBlob(p.src), fname);
+            dlBlob(dataURLtoBlob(p.src), p._filename || 'image.jpg');
         }
+        if (blobItems.length > 0) setTimeout(() => alert(`✅ 이미지 ${blobItems.length}개 다운로드됐어요.\nasset/gallery/ 폴더에 넣어주세요.`), 300);
+    }
+    function dlBlob(blob, name) { const u = URL.createObjectURL(blob), a = document.createElement('a'); a.href=u; a.download=name; a.click(); URL.revokeObjectURL(u); }
+    function dataURLtoBlob(d) { const [h,data]=d.split(','), mime=h.match(/:(.*?);/)[1], bin=atob(data), arr=new Uint8Array(bin.length); for(let i=0;i<bin.length;i++) arr[i]=bin.charCodeAt(i); return new Blob([arr],{type:mime}); }
 
-        if (blobItems.length > 0) {
-            setTimeout(() => alert(`✅ 이미지 ${blobItems.length}개가 다운로드됐어요.\nasset/gallery/ 폴더에 넣어주세요.`), 300);
+    /* ═══ Lightbox ═══ */
+    function openLightbox(idx) {
+        const src = GALLERY_PHOTOS[idx]?.src; if (!src) return;
+        currentLightboxIndex = idx;
+        document.getElementById('lightboxImg').src = src;
+        document.getElementById('lightboxModal').classList.add('open');
+        document.body.style.overflow = 'hidden';
+    }
+    function closeLightbox() { document.getElementById('lightboxModal').classList.remove('open'); document.body.style.overflow = ''; }
+    function lightboxNav(dir) { let n = currentLightboxIndex + dir; if(n<0) n=GALLERY_PHOTOS.length-1; if(n>=GALLERY_PHOTOS.length) n=0; openLightbox(n); }
+    document.getElementById('lightboxModal').addEventListener('click', function(e) { if(e.target===this) closeLightbox(); });
+
+    /* ═══ Nav ═══ */
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 60));
+    function toggleNav() { document.getElementById('navLinks').classList.toggle('open'); }
+    function closeNav() { document.getElementById('navLinks').classList.remove('open'); }
+
+    /* ═══ Reveal ═══ */
+    const ro = new IntersectionObserver(entries => {
+        entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('visible'); ro.unobserve(e.target); } });
+    }, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
+    document.querySelectorAll('.reveal').forEach(el => ro.observe(el));
+
+    /* ═══ Smooth scroll ═══ */
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+        a.addEventListener('click', function(e) {
+            if(this.getAttribute('href')==='#') return;
+            e.preventDefault();
+            const t = document.querySelector(this.getAttribute('href'));
+            if(t) t.scrollIntoView({ behavior:'smooth', block:'start' });
+        });
+    });
+
+    /* ═══ Keyboard ═══ */
+    document.addEventListener('keydown', e => {
+        if(document.getElementById('lightboxModal').classList.contains('open')) {
+            if(e.key==='ArrowLeft') lightboxNav(-1);
+            if(e.key==='ArrowRight') lightboxNav(1);
+            if(e.key==='Escape') closeLightbox();
+        }
+        if(document.getElementById('pwModal').classList.contains('open')) {
+            if(e.key==='Enter') submitPassword();
+            if(e.key==='Escape') closePwModal();
+        }
+    });
+
+    /* ═══ Admin ═══ */
+    const ADMIN_PASSWORD = 'prosper2025'; // ← 비밀번호 변경
+
+    function toggleAdminMode() {
+        if(document.body.classList.contains('admin-mode')) {
+            document.body.classList.remove('admin-mode');
+            buildGallery();
+        } else {
+            document.getElementById('pwModal').classList.add('open');
+            setTimeout(() => document.getElementById('pwInput').focus(), 100);
         }
     }
-
-    function downloadBlob(blob, filename) {
-        const url = URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.href = url; a.download = filename; a.click();
-        URL.revokeObjectURL(url);
+    function submitPassword() {
+        const input = document.getElementById('pwInput');
+        const msg   = document.getElementById('pwError');
+        if(input.value === ADMIN_PASSWORD) {
+            document.getElementById('pwModal').classList.remove('open');
+            input.value=''; msg.style.display='none';
+            document.body.classList.add('admin-mode');
+            buildGallery();
+        } else {
+            msg.style.display='block'; input.value=''; input.focus();
+        }
+    }
+    function closePwModal() {
+        document.getElementById('pwModal').classList.remove('open');
+        document.getElementById('pwInput').value='';
+        document.getElementById('pwError').style.display='none';
     }
 
-    function dataURLtoBlob(dataUrl) {
-        const [header, data] = dataUrl.split(',');
-        const mime = header.match(/:(.*?);/)[1];
-        const binary = atob(data);
-        const arr = new Uint8Array(binary.length);
-        for (let i = 0; i < binary.length; i++) arr[i] = binary.charCodeAt(i);
-        return new Blob([arr], {type: mime});
-    }
+    /* ═══ Init ═══ */
+    buildGallery();
 
+    /* ═══ ?admin 파라미터 감지 ═══ */
+    if(new URLSearchParams(location.search).has('admin')) {
+        setTimeout(() => {
+            document.getElementById('pwModal').classList.add('open');
+            document.getElementById('pwInput').focus();
+        }, 300);
+    }
     </script>
 </body>
 </html>
