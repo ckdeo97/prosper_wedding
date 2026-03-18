@@ -151,7 +151,7 @@
         /* ADDON CARDS */
         .addon-card { display:grid; grid-template-columns:340px 1fr; gap:0; border:1px solid var(--border-light); background:var(--ivory); overflow:hidden; box-shadow:var(--shadow-soft); transition:box-shadow 0.4s,transform 0.4s; }
         .addon-card:hover { box-shadow:var(--shadow-card); transform:translateY(-2px); }
-        .addon-card-video { position:relative; aspect-ratio:16/10; overflow:hidden; background:var(--cream-deep); flex-shrink:0; }
+        .addon-card-video { position:relative; aspect-ratio:16/9; overflow:hidden; background:var(--cream-deep); flex-shrink:0; }
         .addon-card-video video { width:100%; height:100%; object-fit:cover; display:block; transition:transform 0.6s cubic-bezier(0.22,1,0.36,1); }
         .addon-card:hover .addon-card-video video { transform:scale(1.03); }
         .addon-card-video-label { position:absolute; bottom:0.75rem; left:0.85rem; font-family:'Cormorant Garamond',serif; font-size:0.68rem; letter-spacing:0.25em; text-transform:uppercase; color:rgba(255,255,255,0.7); }
@@ -706,17 +706,22 @@
 
     /* Export */
     async function exportConfig() {
-        const blobItems = GALLERY_PHOTOS.filter(p => p._isBlob);
         const lines = GALLERY_PHOTOS.map((p, i) => {
-            const src = p._isBlob ? `asset/gallery/${p._filename || (String(i+1).padStart(2,'0')+'.jpg')}` : p.src;
+            const fname = String(i+1).padStart(2,'0') + '.jpg';
+            const src = p._isBlob ? `asset/gallery/${fname}` : p.src;
             return `    { src: "${src}", layout: "${p.layout}", alt: "${p.alt||''}" }`;
         }).join(',\n');
         downloadBlob(new Blob([`// gallery-config.js\nconst GALLERY_PHOTOS = [\n${lines}\n];\n`], {type:'text/javascript'}), 'gallery-config.js');
-        for (const p of blobItems) {
+
+        const blobItems = GALLERY_PHOTOS.filter(p => p._isBlob);
+        for (let i = 0; i < GALLERY_PHOTOS.length; i++) {
+            const p = GALLERY_PHOTOS[i];
+            if (!p._isBlob) continue;
             await new Promise(r => setTimeout(r, 200));
-            downloadBlob(dataURLtoBlob(p.src), p._filename || 'image.jpg');
+            const fname = String(i+1).padStart(2,'0') + '.jpg';
+            downloadBlob(dataURLtoBlob(p.src), fname);
         }
-        if (blobItems.length > 0) setTimeout(() => alert(`✅ 이미지 ${blobItems.length}개 다운로드됐어요.\nasset/gallery/ 폴더에 넣어주세요.`), 300);
+        if (blobItems.length > 0) setTimeout(() => alert(`✅ 이미지 ${blobItems.length}개 다운로드됐어요.\n파일명이 01.jpg, 02.jpg... 순으로 저장됩니다.\nasset/gallery/ 폴더에 넣어주세요.`), 300);
     }
     function downloadBlob(blob, filename) { const url = URL.createObjectURL(blob); const a = document.createElement('a'); a.href=url; a.download=filename; a.click(); URL.revokeObjectURL(url); }
     function dataURLtoBlob(dataUrl) {
