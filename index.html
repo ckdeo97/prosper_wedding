@@ -469,7 +469,7 @@
         }
         .lightbox-prev { left: 1.5rem; }
         .lightbox-next { right: 1.5rem; }
-        .lightbox-nav:hover, .lightbox-close:hover { border-color: var(--gold); color: var(--gold); }
+        #pwModal.open { display: flex; }
     </style>
 </head>
 <body>
@@ -770,6 +770,49 @@
         <button class="lightbox-nav lightbox-next" onclick="lightboxNav(1)">&#8594;</button>
     </div>
 
+    <!-- ───────── PASSWORD MODAL ───────── -->
+    <div id="pwModal" style="
+        display:none; position:fixed; inset:0; z-index:9999;
+        background:rgba(0,0,0,0.6); backdrop-filter:blur(6px);
+        align-items:center; justify-content:center;
+    ">
+        <div style="
+            background:var(--ivory); padding:2.5rem 2.5rem 2rem;
+            border:1px solid var(--border); min-width:320px; text-align:center;
+            box-shadow:0 20px 60px rgba(0,0,0,0.2);
+        ">
+            <div style="font-family:'Cormorant Garamond',serif; font-size:0.7rem; letter-spacing:0.3em; text-transform:uppercase; color:var(--gold); margin-bottom:1rem;">Admin Access</div>
+            <h3 style="font-family:'Noto Serif KR',serif; font-size:1.1rem; font-weight:400; color:var(--text-dark); margin-bottom:1.75rem;">비밀번호를 입력해주세요</h3>
+            <input id="pwInput" type="password" placeholder="Password" style="
+                width:100%; padding:0.75rem 1rem; border:1px solid var(--border-light);
+                background:var(--cream); font-size:0.9rem; outline:none;
+                font-family:'Noto Sans KR',sans-serif; color:var(--text-dark);
+                letter-spacing:0.1em; transition:border 0.2s;
+            " onfocus="this.style.borderColor='var(--gold)'" onblur="this.style.borderColor='var(--border-light)'">
+            <div id="pwError" style="display:none; font-size:0.75rem; color:#c0392b; margin-top:0.6rem; letter-spacing:0.03em;">
+                비밀번호가 올바르지 않습니다.
+            </div>
+            <div style="display:flex; gap:0.75rem; margin-top:1.5rem;">
+                <button onclick="closePwModal()" style="
+                    flex:1; padding:0.75rem; background:transparent;
+                    border:1px solid var(--border-light); color:var(--text-light);
+                    font-size:0.75rem; letter-spacing:0.1em; text-transform:uppercase;
+                    cursor:pointer; font-family:'Noto Sans KR',sans-serif;
+                    transition:all 0.2s;
+                " onmouseover="this.style.borderColor='var(--gold)';this.style.color='var(--gold)'"
+                   onmouseout="this.style.borderColor='var(--border-light)';this.style.color='var(--text-light)'">취소</button>
+                <button onclick="submitPassword()" style="
+                    flex:1; padding:0.75rem; background:var(--gold);
+                    border:none; color:#fff;
+                    font-size:0.75rem; letter-spacing:0.1em; text-transform:uppercase;
+                    cursor:pointer; font-family:'Noto Sans KR',sans-serif;
+                    transition:background 0.2s;
+                " onmouseover="this.style.background='var(--gold-light)'"
+                   onmouseout="this.style.background='var(--gold)'">확인</button>
+            </div>
+        </div>
+    </div>
+
     <!-- ───────── ADMIN BAR ───────── -->
     <div class="admin-bar">
         <span class="admin-bar-label">⚙ Admin Mode</span>
@@ -823,8 +866,7 @@
 
     <script>
     /* ═══ Gallery Render ═══ */
-    const isAdmin = new URLSearchParams(location.search).has('admin');
-    if (isAdmin) document.body.classList.add('admin-mode');
+    let isAdmin = false; // 우측 하단 ⚙ 버튼으로 켜고 끄세요
 
     let currentLightboxIndex = 0;
     const lightboxImages = [];
@@ -867,13 +909,12 @@
             overlay.className = 'gallery-overlay';
             item.appendChild(overlay);
 
-            // Lightbox click (non-admin)
-            if (!isAdmin) {
+            if (!document.body.classList.contains('admin-mode')) {
                 item.addEventListener('click', () => openLightbox(i));
             }
 
             // Admin edit overlay
-            if (isAdmin) {
+            if (document.body.classList.contains('admin-mode')) {
                 const editOv = document.createElement('div');
                 editOv.className = 'gallery-edit-overlay';
                 editOv.innerHTML = `
@@ -970,6 +1011,61 @@
             const t = document.querySelector(this.getAttribute('href'));
             if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' });
         });
+    });
+
+    /* ═══ Secret Trigger — Shift + 로고 3번 클릭 ═══ */
+    const ADMIN_PASSWORD = '0501'; // ← 비밀번호 여기서 변경
+    let logoClickCount = 0;
+    let logoClickTimer = null;
+
+    document.querySelector('nav a[href="#hero"]').addEventListener('click', function(e) {
+        if (!e.shiftKey) return;
+        e.preventDefault();
+        logoClickCount++;
+        clearTimeout(logoClickTimer);
+        logoClickTimer = setTimeout(() => { logoClickCount = 0; }, 1500);
+        if (logoClickCount >= 3) {
+            logoClickCount = 0;
+            clearTimeout(logoClickTimer);
+            toggleAdminMode();
+        }
+    });
+
+    function toggleAdminMode() {
+        if (document.body.classList.contains('admin-mode')) {
+            document.body.classList.remove('admin-mode');
+            buildGallery();
+        } else {
+            document.getElementById('pwModal').classList.add('open');
+            setTimeout(() => document.getElementById('pwInput').focus(), 100);
+        }
+    }
+
+    function submitPassword() {
+        const input = document.getElementById('pwInput');
+        const msg   = document.getElementById('pwError');
+        if (input.value === ADMIN_PASSWORD) {
+            document.getElementById('pwModal').classList.remove('open');
+            input.value = ''; msg.style.display = 'none';
+            document.body.classList.add('admin-mode');
+            buildGallery();
+        } else {
+            msg.style.display = 'block';
+            input.value = ''; input.focus();
+        }
+    }
+
+    function closePwModal() {
+        document.getElementById('pwModal').classList.remove('open');
+        document.getElementById('pwInput').value = '';
+        document.getElementById('pwError').style.display = 'none';
+    }
+
+    document.addEventListener('keydown', e => {
+        if (document.getElementById('pwModal').classList.contains('open')) {
+            if (e.key === 'Enter')  submitPassword();
+            if (e.key === 'Escape') closePwModal();
+        }
     });
 
     /* ═══ Init ═══ */
