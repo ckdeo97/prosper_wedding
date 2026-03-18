@@ -103,6 +103,7 @@
         .gallery-item .gallery-overlay { position:absolute; inset:0; background:linear-gradient(to top,rgba(30,20,10,0.35) 0%,transparent 60%); opacity:0; transition:opacity 0.4s; }
         .gallery-item:hover .gallery-overlay { opacity:1; }
         .gallery-item.no-image { display:flex; align-items:center; justify-content:center; flex-direction:column; gap:0.5rem; }
+        body:not(.admin-mode) .gallery-item.no-image { display:none !important; }
         .gallery-placeholder-icon { opacity:0.2; }
         .gallery-placeholder-icon svg { width:32px; height:32px; stroke:var(--text-dark); }
         .gallery-placeholder-path { font-size:0.65rem; color:var(--text-faint); font-family:monospace; text-align:center; padding:0 1rem; }
@@ -365,7 +366,6 @@
                     <div class="addon-card reveal">
                         <div class="addon-card-video">
                             <video src="asset/addon/drone.mp4" muted loop playsinline onmouseenter="this.play()" onmouseleave="this.pause(); this.currentTime=0;" poster="asset/addon/drone_thumb.jpg"></video>
-                            <div class="addon-card-video-label">Drone</div>
                         </div>
                         <div class="addon-card-body">
                             <div class="addon-card-top"><div><div class="addon-card-name">드론 촬영</div><div class="addon-card-price">+ 100,000<span style="font-size:0.75rem; font-family:'Noto Sans KR',sans-serif; font-weight:300;">원</span></div></div></div>
@@ -376,7 +376,6 @@
                     <div class="addon-card reveal" style="transition-delay:0.05s;">
                         <div class="addon-card-video">
                             <video src="asset/addon/teaser.mp4" muted loop playsinline onmouseenter="this.play()" onmouseleave="this.pause(); this.currentTime=0;" poster="asset/addon/teaser_thumb.jpg"></video>
-                            <div class="addon-card-video-label">Teaser Film</div>
                         </div>
                         <div class="addon-card-body">
                             <div class="addon-card-top"><div><div class="addon-card-name">Wedding Teaser Film</div><div class="addon-card-price">+ 120,000<span style="font-size:0.75rem; font-family:'Noto Sans KR',sans-serif; font-weight:300;">원</span></div></div><span class="addon-card-tag">Deluxe 이상</span></div>
@@ -387,7 +386,6 @@
                     <div class="addon-card reveal" style="transition-delay:0.1s;">
                         <div class="addon-card-video">
                             <video src="asset/addon/dvd.mp4" muted loop playsinline onmouseenter="this.play()" onmouseleave="this.pause(); this.currentTime=0;" poster="asset/addon/dvd_thumb.jpg"></video>
-                            <div class="addon-card-video-label">Wedding DVD</div>
                         </div>
                         <div class="addon-card-body">
                             <div class="addon-card-top"><div><div class="addon-card-name">본식 DVD</div><div class="addon-card-price">+ 580,000<span style="font-size:0.75rem; font-family:'Noto Sans KR',sans-serif; font-weight:300;">원</span></div></div><span class="addon-card-tag">Deluxe 이상</span></div>
@@ -497,28 +495,8 @@
         <button class="admin-export-btn" onclick="exportConfig()">gallery-config.js 다운로드</button>
     </div>
 
-    <script>
-    /* ════════════════════════════════
-       📸 GALLERY CONFIG
-       layout: "feature"(2×2) | "tall"(1×2) | "wide"(2×1) | "square"(1×1)
-    ════════════════════════════════ */
-    const GALLERY_PHOTOS = [
-        { src: "asset/gallery/01.jpg", layout: "feature", alt: "" },
-        { src: "asset/gallery/02.jpg", layout: "square",  alt: "" },
-        { src: "asset/gallery/03.jpg", layout: "tall",    alt: "" },
-        { src: "asset/gallery/04.jpg", layout: "square",  alt: "" },
-        { src: "asset/gallery/05.jpg", layout: "square",  alt: "" },
-        { src: "asset/gallery/06.jpg", layout: "wide",    alt: "" },
-        { src: "asset/gallery/07.jpg", layout: "square",  alt: "" },
-        { src: "asset/gallery/08.jpg", layout: "square",  alt: "" },
-        { src: "asset/gallery/09.jpg", layout: "square",  alt: "" },
-        { src: "asset/gallery/10.jpg", layout: "square",  alt: "" },
-        { src: "asset/gallery/11.jpg", layout: "feature", alt: "" },
-        { src: "asset/gallery/12.jpg", layout: "tall",    alt: "" },
-        { src: "asset/gallery/13.jpg", layout: "square",  alt: "" },
-        { src: "asset/gallery/14.jpg", layout: "square",  alt: "" },
-    ];
-    </script>
+
+    <script src="gallery-config.js"></script>
 
     <script>
     let currentLightboxIndex = 0;
@@ -693,12 +671,16 @@
             e.preventDefault(); item.style.outline = ''; item.style.background = '';
             const file = e.dataTransfer.files[0];
             if (!file || !file.type.startsWith('image/')) return;
+
+            // 드롭 전에 현재 레이아웃 선택값 먼저 저장
+            const layoutSel = item.querySelector('.edit-layout-select');
+            if (layoutSel) GALLERY_PHOTOS[idx].layout = layoutSel.value;
+
             const loadDiv = document.createElement('div');
             loadDiv.style.cssText = 'position:absolute;inset:0;background:rgba(0,0,0,0.5);display:flex;align-items:center;justify-content:center;color:white;font-size:0.75rem;letter-spacing:0.1em;z-index:200;';
             loadDiv.textContent = '처리 중...'; item.appendChild(loadDiv);
             const dataUrl = await resizeImageFile(file, 1920);
             GALLERY_PHOTOS[idx].src = dataUrl;
-            GALLERY_PHOTOS[idx]._filename = file.name.replace(/\.[^.]+$/, '.jpg');
             GALLERY_PHOTOS[idx]._isBlob = true;
             item.removeChild(loadDiv); buildGallery();
         });
