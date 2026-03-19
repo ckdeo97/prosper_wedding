@@ -92,8 +92,9 @@
         @media (max-width:768px) { .about-wrapper { grid-template-columns:1fr; gap:2.5rem; } .about-accent-frame { display:none; } }
 
         /* GALLERY */
-        #gallery { padding-top:6rem; padding-bottom:6rem; max-width:1400px; }
-        .gallery-grid { display:grid; grid-template-columns:repeat(3,1fr); grid-auto-rows:300px; gap:6px; }
+        #gallery { padding-top:6rem; padding-bottom:6rem; max-width:1400px; overflow:hidden; }
+        /* 그리드 고정 너비 — scale 기준점 */
+        .gallery-grid { display:grid; grid-template-columns:repeat(3,1fr); grid-auto-rows:300px; gap:6px; width:900px; }
         .gallery-item { position:relative; overflow:hidden; background:var(--cream-deep); cursor:pointer; }
         .gallery-item[data-layout="feature"] { grid-column:span 2; grid-row:span 2; }
         .gallery-item[data-layout="tall"] { grid-row:span 2; }
@@ -107,9 +108,9 @@
         .gallery-placeholder-icon { opacity:0.2; }
         .gallery-placeholder-icon svg { width:32px; height:32px; stroke:var(--text-dark); }
         .gallery-placeholder-path { font-size:0.65rem; color:var(--text-faint); font-family:monospace; text-align:center; padding:0 1rem; }
-        /* 갤러리 모바일 스케일 */
-        #galleryOuter { width: 100%; }
-        .gallery-scale-wrap { transform-origin: top left; display: block; }
+        /* 모바일 스케일 래퍼 */
+        #galleryOuter { width:100%; overflow:hidden; }
+        .gallery-scale-wrap { transform-origin:top left; display:block; }
 
         /* ADMIN */
         body.admin-mode .gallery-item { outline:2px dashed rgba(176,141,87,0.4); }
@@ -722,29 +723,32 @@
         return new Blob([arr], {type: mime});
     }
 
-    /* ═══ 갤러리 모바일 스케일 ═══ */
+    /* ═══ 갤러리 모바일 스케일 ═══
+       그리드 고정 너비(900px) 기준으로 뷰포트에 맞게 비율 축소
+       → 셀 비율 그대로, 전체만 작아짐
+    ═══ */
+    const GALLERY_NATURAL_WIDTH = 900; // gallery-grid width 와 동일하게 유지
+
     function scaleGallery() {
         const outer = document.getElementById('galleryOuter');
         const wrap  = document.getElementById('galleryScaleWrap');
+        if (!outer || !wrap) return;
+
+        const available = outer.clientWidth;
+
+        if (available >= GALLERY_NATURAL_WIDTH) {
+            // PC — 스케일 불필요
+            wrap.style.transform = '';
+            outer.style.height = '';
+            return;
+        }
+
+        const scale = available / GALLERY_NATURAL_WIDTH;
         const grid  = document.getElementById('galleryGrid');
-        if (!outer || !wrap || !grid) return;
-
-        // 스케일 초기화
-        wrap.style.transform = '';
-        wrap.style.transformOrigin = '';
-        outer.style.height = '';
-
-        const naturalW = grid.offsetWidth;
-        const available = outer.offsetWidth;
-
-        if (naturalW <= available || naturalW === 0) return;
-
-        const scale = available / naturalW;
-        const naturalH = grid.offsetHeight;
+        const naturalH = grid ? grid.offsetHeight : 0;
 
         wrap.style.transformOrigin = 'top left';
         wrap.style.transform = `scale(${scale})`;
-        // 축소 후 실제 차지하는 높이로 outer 크기 잡아줌 (아래 빈 공간 방지)
         outer.style.height = (naturalH * scale) + 'px';
     }
 
@@ -752,7 +756,9 @@
 
     /* ═══ Init ═══ */
     buildGallery();
-    setTimeout(scaleGallery, 200);
+    // 이미지 렌더 후 정확한 높이 측정을 위해 충분한 딜레이
+    setTimeout(scaleGallery, 50);
+    setTimeout(scaleGallery, 300);
 
     /* ?admin 감지 — 모든 타이밍에서 시도 */
     (function checkAdmin() {
