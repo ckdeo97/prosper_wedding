@@ -391,7 +391,7 @@
                 <div style="display:flex; flex-direction:column; gap:2rem;">
                     <div class="addon-card reveal">
                         <div class="addon-card-video">
-                            <video src="asset/addon/drone.mp4" muted loop playsinline onmouseenter="this.play()" onmouseleave="this.pause(); this.currentTime=0;" poster="asset/addon/drone_thumb.jpg"></video>
+                            <video src="asset/addon/drone.mp4" muted loop playsinline class="addon-video" poster="asset/addon/drone_thumb.jpg"></video>
                         </div>
                         <div class="addon-card-body">
                             <div class="addon-card-top"><div><div class="addon-card-name">드론 촬영</div><div class="addon-card-price">+ 100,000<span style="font-size:0.75rem; font-family:'Noto Sans KR',sans-serif; font-weight:300;">원</span></div></div></div>
@@ -401,7 +401,7 @@
                     </div>
                     <div class="addon-card reveal" style="transition-delay:0.05s;">
                         <div class="addon-card-video">
-                            <video src="asset/addon/teaser.mp4" muted loop playsinline onmouseenter="this.play()" onmouseleave="this.pause(); this.currentTime=0;" poster="asset/addon/teaser_thumb.jpg"></video>
+                            <video src="asset/addon/teaser.mp4" muted loop playsinline class="addon-video" poster="asset/addon/teaser_thumb.jpg"></video>
                         </div>
                         <div class="addon-card-body">
                             <div class="addon-card-top"><div><div class="addon-card-name">Wedding Teaser Film</div><div class="addon-card-price">+ 120,000<span style="font-size:0.75rem; font-family:'Noto Sans KR',sans-serif; font-weight:300;">원</span></div></div><span class="addon-card-tag">Deluxe 이상</span></div>
@@ -411,7 +411,7 @@
                     </div>
                     <div class="addon-card reveal" style="transition-delay:0.1s;">
                         <div class="addon-card-video">
-                            <video src="asset/addon/dvd.mp4" muted loop playsinline onmouseenter="this.play()" onmouseleave="this.pause(); this.currentTime=0;" poster="asset/addon/dvd_thumb.jpg"></video>
+                            <video src="asset/addon/dvd.mp4" muted loop playsinline class="addon-video" poster="asset/addon/dvd_thumb.jpg"></video>
                         </div>
                         <div class="addon-card-body">
                             <div class="addon-card-top"><div><div class="addon-card-name">본식 DVD</div><div class="addon-card-price">+ 580,000<span style="font-size:0.75rem; font-family:'Noto Sans KR',sans-serif; font-weight:300;">원</span></div></div><span class="addon-card-tag">Deluxe 이상</span></div>
@@ -764,6 +764,15 @@
     }
 
     window.addEventListener('resize', scaleGallery);
+
+    /* ═══ 옵션 영상 노출 시 자동재생 ═══ */
+    const videoObserver = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+            if (e.isIntersecting) e.target.play();
+            else { e.target.pause(); e.target.currentTime = 0; }
+        });
+    }, { threshold: 0.4 });
+    document.querySelectorAll('.addon-video').forEach(v => videoObserver.observe(v));
 
     /* ═══ Init ═══ */
     buildGallery();
