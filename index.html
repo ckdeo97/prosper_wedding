@@ -103,11 +103,8 @@
         /* ── GALLERY ── */
         #gallery { padding-top:6rem; padding-bottom:6rem; max-width:1400px; }
 
-        /* outer: 뷰포트 너비 100%, 넘치는 부분 숨김 */
-        #galleryOuter { width:100%; overflow:hidden; }
-
-        /* wrap: 이 요소 전체에 transform scale 적용됨 */
-        #galleryWrap { display:inline-block; transform-origin:top left; }
+        #galleryOuter { width:100%; overflow:hidden; display:flex; justify-content:center; }
+        #galleryWrap { transform-origin:top center; }
 
         /* grid: 완전 고정 픽셀. 이 값이 "원본 크기" 기준 */
         #galleryGrid {
@@ -761,7 +758,7 @@
 
         const scale = Math.min(1, available / FIXED_W);
 
-        wrap.style.transformOrigin = 'top left';
+        wrap.style.transformOrigin = 'top center';
         wrap.style.transform       = `scale(${scale})`;
         outer.style.height         = (grid.offsetHeight * scale) + 'px';
     }
