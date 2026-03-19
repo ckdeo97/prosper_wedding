@@ -107,15 +107,9 @@
         .gallery-placeholder-icon { opacity:0.2; }
         .gallery-placeholder-icon svg { width:32px; height:32px; stroke:var(--text-dark); }
         .gallery-placeholder-path { font-size:0.65rem; color:var(--text-faint); font-family:monospace; text-align:center; padding:0 1rem; }
-        /* 갤러리 — 모바일에서 PC 레이아웃 그대로 비율 축소 */
-        @media (max-width:768px) {
-            #gallery { overflow: hidden; padding-left: 0; padding-right: 0; }
-            .gallery-scale-wrap {
-                transform-origin: top left;
-                width: calc(100vw / var(--scale));
-                transform: scale(var(--scale));
-            }
-        }
+        /* 갤러리 모바일 스케일 */
+        #galleryOuter { width: 100%; }
+        .gallery-scale-wrap { transform-origin: top left; display: block; }
 
         /* ADMIN */
         body.admin-mode .gallery-item { outline:2px dashed rgba(176,141,87,0.4); }
@@ -313,8 +307,10 @@
             <h2 class="section-title">Gallery</h2>
             <div class="section-ornament"><div class="section-ornament-line"></div><div class="section-ornament-dot"></div><div class="section-ornament-line"></div></div>
         </div>
+        <div id="galleryOuter">
         <div class="gallery-scale-wrap" id="galleryScaleWrap">
         <div class="gallery-grid reveal" id="galleryGrid" style="transition-delay:0.1s;"></div>
+        </div>
         </div>
     </section>
 
@@ -728,31 +724,35 @@
 
     /* ═══ 갤러리 모바일 스케일 ═══ */
     function scaleGallery() {
-        const wrap = document.getElementById('galleryScaleWrap');
-        const grid = document.getElementById('galleryGrid');
-        if (!wrap || !grid) return;
-        if (window.innerWidth >= 768) {
-            wrap.style.removeProperty('--scale');
-            wrap.style.width = '';
-            wrap.style.transform = '';
-            wrap.style.height = '';
-            return;
-        }
-        const naturalWidth = grid.scrollWidth;
-        const available = window.innerWidth;
-        if (naturalWidth <= available) return;
-        const scale = available / naturalWidth;
-        wrap.style.setProperty('--scale', scale);
-        wrap.style.transform = `scale(${scale})`;
+        const outer = document.getElementById('galleryOuter');
+        const wrap  = document.getElementById('galleryScaleWrap');
+        const grid  = document.getElementById('galleryGrid');
+        if (!outer || !wrap || !grid) return;
+
+        // 스케일 초기화
+        wrap.style.transform = '';
+        wrap.style.transformOrigin = '';
+        outer.style.height = '';
+
+        const naturalW = grid.offsetWidth;
+        const available = outer.offsetWidth;
+
+        if (naturalW <= available || naturalW === 0) return;
+
+        const scale = available / naturalW;
+        const naturalH = grid.offsetHeight;
+
         wrap.style.transformOrigin = 'top left';
-        wrap.style.width = `${naturalWidth}px`;
-        wrap.style.height = `${grid.scrollHeight * scale}px`;
+        wrap.style.transform = `scale(${scale})`;
+        // 축소 후 실제 차지하는 높이로 outer 크기 잡아줌 (아래 빈 공간 방지)
+        outer.style.height = (naturalH * scale) + 'px';
     }
+
     window.addEventListener('resize', scaleGallery);
 
     /* ═══ Init ═══ */
     buildGallery();
-    setTimeout(scaleGallery, 100);
+    setTimeout(scaleGallery, 200);
 
     /* ?admin 감지 — 모든 타이밍에서 시도 */
     (function checkAdmin() {
