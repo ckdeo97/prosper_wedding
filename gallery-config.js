@@ -12,6 +12,6 @@ const GALLERY_PHOTOS = [
     { src: "asset/gallery/10.jpg", layout: "square", alt: "" },
     { src: "asset/gallery/11.jpg", layout: "tall", alt: "" },
     { src: "asset/gallery/12.jpg", layout: "tall", alt: "" },
-    { src: "asset/gallery/13.jpg", layout: "square", alt: "" },
-    { src: "asset/gallery/14.jpg", layout: "square", alt: "" }
+    { src: "asset/gallery/13.jpg", layout: "tall", alt: "" },
+    { src: "asset/gallery/14.jpg", layout: "wide", alt: "" }
 ];
